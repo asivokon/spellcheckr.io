@@ -35,8 +35,14 @@ module.exports = React.createClass({
             }
         }, this);
         FireBaseService.getResponses(messageId, function(responses) {
-            if (responses && responses.length) {
-                this.setState({ responses: responses })
+            if (responses) {
+                var result = [];
+                for (var response in responses) {
+                    if (responses.hasOwnProperty(response)) {
+                        result.push(responses[response]);
+                    }
+                }
+                this.setState({ responses: result })
             }
         }, this);
         return {
