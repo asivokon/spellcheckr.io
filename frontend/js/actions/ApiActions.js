@@ -5,5 +5,11 @@ var AT = Constants.ActionTypes;
 
 module.exports = {
 
+    pubnubUpdate: function (text) {
+        Dispatcher.handleViewAction({
+            type: AT.PUBNUB_UPDATE,
+            text: text
+        });
+    }
 
 };

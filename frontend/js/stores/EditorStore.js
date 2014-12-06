@@ -6,7 +6,8 @@ var assign = require('object-assign');
 var AT = Constants.ActionTypes,
     CHANGE_EVENT = Constants.Events.CHANGE;
 
-var _text = '';
+var _text = '',
+    _pubNubText = '';
 
 var EditorStore = assign({}, EventEmitter.prototype, {
 
@@ -24,6 +25,10 @@ var EditorStore = assign({}, EventEmitter.prototype, {
 
     getText: function () {
         return _text;
+    },
+
+    getPubnubText: function () {
+        return _pubNubText;
     }
 
 });
@@ -35,6 +40,11 @@ EditorStore.dispatchToken = Dispatcher.register(function (payload) {
 
         case AT.UPDATE_TEXT:
             _text = action.text;
+            EditorStore.emitChange();
+            break;
+
+        case AT.PUBNUB_UPDATE:
+            _pubNubText = action.text;
             EditorStore.emitChange();
             break;
 
