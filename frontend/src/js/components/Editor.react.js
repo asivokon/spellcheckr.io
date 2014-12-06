@@ -31,6 +31,7 @@ module.exports = React.createClass({
     render: function () {
         return (
             <div className="content-editor-wrapper">
+                <h5>Request</h5>
                 <ContentEditable
                     className="content-editor"
                     html={this.state.text}

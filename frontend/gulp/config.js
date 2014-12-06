@@ -27,14 +27,11 @@ module.exports = {
     }
   },
   less: {
-    src: src + "/css/*.less",
+    src: "./app.less",
     watch: src + "/css/**/*.less",
     dest: dest,
-    settings2: {
-      // Required if you want to use SASS syntax
-      // See https://github.com/dlmanning/gulp-sass/issues/81
-      sourceComments: 'map',
-      imagePath: '/images' // Used by the image-url helper
+    settings: {
+
     }
   },
   images: {

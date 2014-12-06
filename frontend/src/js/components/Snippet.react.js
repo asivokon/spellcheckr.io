@@ -20,10 +20,10 @@ module.exports = React.createClass({
 
     render: function () {
         return (
-            <div className="snippet_item"
+            <div className="snippet-item"
                 onMouseEnter={this.onMouseEnter}
                 onMouseLeave={this.onMouseLeave} >
-                <span className="snippet_text">{this.props.text}</span>
+                <span className="snippet-item-text">{this.props.text}</span>
             </div>
         );
     },
