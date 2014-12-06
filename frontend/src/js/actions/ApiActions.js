@@ -5,9 +5,9 @@ var AT = Constants.ActionTypes;
 
 module.exports = {
 
-    pubnubUpdate: function (text) {
+    suggestRequest: function (text) {
         Dispatcher.handleViewAction({
-            type: AT.PUBNUB_UPDATE,
+            type: AT.SUGGEST_REQUEST,
             text: text
         });
     },

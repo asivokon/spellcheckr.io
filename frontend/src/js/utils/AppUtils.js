@@ -2,7 +2,6 @@ var UiActions = require("../actions/UiActions");
 
 module.exports = {
     updateText: function (text) {
-        console.log(text);
     },
 
     generateSnippetId: function () {
