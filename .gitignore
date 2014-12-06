@@ -1,6 +1,6 @@
 .idea
 node_modules
-.*log$
+frontend/npm-debug.log
 dist
 
 ### vim ###
