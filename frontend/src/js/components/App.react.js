@@ -13,9 +13,11 @@ module.exports = React.createClass({
         return (
             <div className="spell-checkr-app">
                 <Editor />
-                <LangChanell />
-                <PubnubEditor />
-                <RaisedButton label="Default" />
+                <div className="lang-snippets-wrapper">
+                    <LangChanell />
+                    <PubnubEditor />
+                    <RaisedButton label="Default" />
+                </div>
             </div>
         );
     }

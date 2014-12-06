@@ -1,6 +1,7 @@
 var React = require('react');
 var EditActions = require('../actions/EditActions');
 var EditorStore = require('../stores/EditorStore');
+var ContentEditable = require('./ContentEditable.react');
 
 function getStateFromStores() {
     return {
@@ -29,11 +30,13 @@ module.exports = React.createClass({
 
     render: function () {
         return (
-            <textarea
-                className="editor-textarea"
-                placeholder="Some text must be here"
-                value={this.state.text}
-                onChange={this._textChange}></textarea>
+            <div className="content-editor-wrapper">
+                <ContentEditable
+                    className="content-editor"
+                    html={this.state.text}
+                    onChange={this._textChange}
+                />
+            </div>
         );
     },
 
