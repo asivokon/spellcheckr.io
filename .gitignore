@@ -1,7 +1,7 @@
 .idea
 node_modules
 .*log$
-dist
+dist/*
 
 ### vim ###
 [._]*.s[a-w][a-z]
