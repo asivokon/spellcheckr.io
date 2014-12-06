@@ -15,17 +15,9 @@ var FireBaseRoutes = {
 };
 
 module.exports = {
-    putMessage: function (messageId, text, responseHandler) {
+    putMessage: function (messageId, text) {
         var db = FireBaseRoutes.getMessagesInstance(messageId);
         db.set({message: text, date: new Date().getTime()});
-        var responseDb = FireBaseRoutes.getResponsesInstance(messageId);
-        responseDb.on("child_added", function (snapshot) {
-            var newPost = snapshot.val();
-            console.log("Responded to " + messageId + ":" + newPost.message);
-            if (responseHandler) {
-                responseHandler(newPost);
-            }
-        });
     },
 
     putResponse: function (messageId, text) {

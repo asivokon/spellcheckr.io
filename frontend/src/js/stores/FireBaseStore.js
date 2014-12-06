@@ -29,10 +29,9 @@ FireBaseStore.dispatchToken = Dispatcher.register(function (payload) {
             snippetId = action.snippetId;
             break;
         case AT.UPDATE_TEXT:
-
+            FireBaseUtil.putMessage(snippetId, action.text);
             break;
         default:
-        // do nothing
     }
 
 });
