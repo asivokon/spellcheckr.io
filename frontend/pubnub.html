@@ -1,0 +1,39 @@
+<html>
+
+<!-- Include the PubNub Library -->
+<script src="https://cdn.pubnub.com/pubnub.min.js"></script>
+ 
+<!-- Instantiate PubNub -->
+<script type="text/javascript">
+
+  var PUBNUB_demo = PUBNUB.init({
+    publish_key: 'pub-c-9deee8d8-bc12-4770-9075-f125b8de84dd',
+    subscribe_key: 'sub-c-56f28a4a-7d24-11e4-baaa-02ee2ddab7fe'
+  });
+
+  PUBNUB_demo.subscribe({
+    channel: 'test-typing',
+    message: function(m){
+      console.log('got', m);
+      document.getElementById('reciever').value = m.typing;
+    }
+  });
+
+  function onType (element) {
+    console.log("send: ");
+    PUBNUB_demo.publish({
+        channel: 'test-typing',
+        message: {"typing": element.value}
+     });
+  };
+  
+</script>
+
+<body>
+
+  <textarea id="txt" onkeyup="onType(this)" onchange="onType(this)" >adfadf</textarea>
+
+  <textarea readonly id="reciever"></textarea>
+
+</body>
+</html>
