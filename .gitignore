@@ -1,7 +1,7 @@
 .idea
-node_modules
+frontend/node_modules
 frontend/npm-debug.log
-dist/*
+frontend/dist
 
 ### vim ###
 [._]*.s[a-w][a-z]
