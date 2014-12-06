@@ -27,8 +27,6 @@ module.exports = React.createClass({
     },
 
     getInitialState: function() {
-        var hash = window.location.hash;
-        var messageId = hash && hash.length ? hash.substring(1): btoa('' + new Date().getTime());
         FireBaseService.getMessage(messageId, function (message) {
             if (message) {
                 this.setState({messageText: message.message });
