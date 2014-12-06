@@ -35,6 +35,10 @@ var LangChannelStore = assign({}, EventEmitter.prototype, {
         return _snippets;
     },
 
+    getChannelLang: function () {
+        return _lang;
+    },
+
     updateOrCreateSnipet: function (snippetId, text) {
       var existing = _.find(_snippets, {'snippetId' : snippetId});
       if (existing) {
@@ -49,14 +53,14 @@ var LangChannelStore = assign({}, EventEmitter.prototype, {
 
 });
 
-EditorStore.dispatchToken = Dispatcher.register(function (payload) {
+LangChannelStore.dispatchToken = Dispatcher.register(function (payload) {
     var action = payload.action;
 
     switch(action.type) {
 
         case AT.LANG_CHANNEL_UPDATE:
             this.updateOrCreateSnipet(action.snippetId, action.text);
-            EditorStore.emitChange();
+            LangChannelStore.emitChange();
             break;
 
         default:
@@ -65,5 +69,5 @@ EditorStore.dispatchToken = Dispatcher.register(function (payload) {
 
 });
 
-module.exports = EditorStore;
+module.exports = LangChannelStore;
 
