@@ -1,6 +1,7 @@
 var React = require('react');
 var Editor = require('./Editor.react');
 var PubnubEditor = require('./PubnubEditor.react');
+var FireBaseMessage = require('./FireBaseMessage.react');
 
 module.exports = React.createClass({
 
@@ -10,6 +11,7 @@ module.exports = React.createClass({
                 app component
                 <Editor />
                 <PubnubEditor />
+                <FireBaseMessage />
             </div>
         );
     }
