@@ -11,10 +11,10 @@ module.exports = {
         this.subscribe();
     },
 
-    publish: function (text) {
+    publish: function (text, lang, snippetId) {
         Pubnub.publish({
-            channel: 'test-typing',
-            message: {"typing": text},
+            channel: 'lang-' + lang,
+            message: {text: text, lang: lang, snippetId: snippetId},
             callback  : function(e) { console.log( "SUCCESS!", e ); },
             error     : function(e) { console.log( "FAILED! RETRY PUBLISH!", e ); }
         });
