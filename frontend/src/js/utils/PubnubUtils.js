@@ -31,6 +31,7 @@ module.exports = {
     },
 
     subscribeLangChannel: function (lang) {
+      // TODO: unsubscribe
       Pubnub.subscribe({
         channel: 'lang-' + lang,
         callback: function (m) {
