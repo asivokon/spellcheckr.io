@@ -14,6 +14,20 @@ module.exports = {
             snippetId: snippetId
         });
         PubnubUtils.publish(text, LangChannelStore.getChannelLang(), snippetId);
+    },
+
+    updateHighLightText: function (text) {
+        Dispatcher.handleViewAction({
+            type: AT.UPDATE_HIGHLIGHT_TEXT,
+            text: text
+        });
+    },
+
+    resetHighLight: function (state) {
+        Dispatcher.handleViewAction({
+            type: AT.RESET_HIGHLIGHT,
+            state: state
+        });
     }
 
 };

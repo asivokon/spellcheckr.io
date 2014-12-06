@@ -5,13 +5,14 @@
   "repository": "",
   "main": "js/app.js",
   "dependencies": {
+    "diff": "^1.2.0",
     "firebase": "^2.0.6",
     "flux": "^2.0.1",
+    "lodash": "¡~2.4.1",
+    "material-ui": "^0.3.2",
     "object-assign": "^2.0.0",
     "pubnub-browserify": "^3.3.0",
-    "react": "^0.12.1",
-    "lodash": "¡~2.4.1",
-    "material-ui": "^0.3.2"
+    "react": "^0.12.1"
   },
   "devDependencies": {
     "browser-sync": "^1.7.2",

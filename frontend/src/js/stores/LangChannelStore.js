@@ -15,7 +15,7 @@ var AT = Constants.ActionTypes,
  * }
  */
 var _snippets = [],     // Snippets of the channel
-    _lang = "";         // Channel's language
+    _lang = '';         // Channel's language
 
 var LangChannelStore = assign({}, EventEmitter.prototype, {
 
@@ -32,7 +32,7 @@ var LangChannelStore = assign({}, EventEmitter.prototype, {
     },
 
     getSnippets: function () {
-      console.log("SNIPPETS", _snippets);
+        console.log('SNIPPETS', _snippets);
         return _snippets;
     },
 
