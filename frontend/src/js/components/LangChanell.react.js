@@ -1,5 +1,6 @@
 var React = require('react');
 var LangChannelStore = require('../stores/LangChannelStore');
+var Snippet = require('./Snippet.react');
 
 function getStateFromStores() {
     return {

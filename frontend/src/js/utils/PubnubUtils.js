@@ -5,14 +5,18 @@ var Settings = require("./Settings");
 module.exports = {
 
     init: function () {
+      console.log("PUBNUB init");
         Pubnub = Pubnub.init({
             publish_key: Settings.pubNub.publishKey,
             subscribe_key: Settings.pubNub.subscribeKey
         });
-        this.subscribe();
+        this.subscribeLangChannel('eng');
+        this.subscribe()
+        this.publish("Hello world", "eng", "deadbeaf");
     },
 
-    publish: function (text, lang, snippetId) {
+  publish: function (text, lang, snippetId) {
+      console.log('PUBNUB publish to ', "lang-" + lang, text, snippetId);
         Pubnub.publish({
             channel: 'lang-' + lang,
             message: {text: text, lang: lang, snippetId: snippetId},
@@ -23,16 +27,17 @@ module.exports = {
 
     subscribe: function () {
         Pubnub.subscribe({
-            channel: 'test-typing',
+            channel: 'lang-eng',
             callback: function (m) {
                 console.log('got', m);
-                ApiActions.pubnubUpdate(m.typing);
+                ApiActions.pubnubUpdate(m.text);
             }
         });
     },
 
     subscribeLangChannel: function (lang) {
       // TODO: unsubscribe
+      console.log("PUBNUB subscribe to ", "lang-" + lang);
       Pubnub.subscribe({
         channel: 'lang-' + lang,
         callback: function (m) {

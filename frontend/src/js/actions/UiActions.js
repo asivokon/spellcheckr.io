@@ -20,7 +20,7 @@ module.exports = {
             type: AT.SET_PRIMARY_LANGUAGE,
             lang: lang
         });
-        PubnubUtils.subscribeLangChannel(lang);
+        //PubnubUtils.subscribeLangChannel(lang);
     },
 
     setSecondaryLanguage: function (lang) {

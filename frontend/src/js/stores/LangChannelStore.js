@@ -32,6 +32,7 @@ var LangChannelStore = assign({}, EventEmitter.prototype, {
     },
 
     getSnippets: function () {
+      console.log("SNIPPETS", _snippets);
         return _snippets;
     },
 
@@ -44,15 +45,17 @@ var LangChannelStore = assign({}, EventEmitter.prototype, {
     },
 
     updateOrCreateSnipet: function (snippetId, text) {
-      var existing = _.find(_snippets, {'snippetId' : snippetId});
-      if (existing) {
-        existing.text = text;
-      } else {
-        _snippets.push({
-          snippetId: snippetId,
-          text: text
-        });
+      for (var i = 0; i < _snippets.length; i++) {
+        if (_snippets[i].snippetId == snippetId) {
+          _snippets[i].text = text;
+          return;
+        }
       }
+
+      _snippets.push({
+        snippetId: snippetId,
+        text: text
+      });
     }
 
 });
@@ -69,6 +72,7 @@ LangChannelStore.dispatchToken = Dispatcher.register(function (payload) {
 
         case AT.SET_PRIMARY_LANGUAGE:
             LangChannelStore.setChannelLag(action.lang);
+            LangChannelStore.emitChange();
             break;
 
         default:
