@@ -5,6 +5,7 @@
   "repository": "",
   "main": "js/app.js",
   "dependencies": {
+    "firebase": "^2.0.6",
     "flux": "^2.0.1",
     "object-assign": "^2.0.0",
     "pubnub-browserify": "^3.3.0",
