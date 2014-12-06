@@ -16,7 +16,7 @@ module.exports = {
     ]
   },
   sass: {
-    src: src + "/sass/*.{sass,scss}",
+    src: src + "/css/*.{sass,scss}",
     dest: dest,
     settings: {
       // Required if you want to use SASS syntax

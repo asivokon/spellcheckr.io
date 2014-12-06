@@ -1,5 +1,5 @@
-var ApiActions = require('../actions/ApiActions');
 var Pubnub = require('pubnub-browserify');
+var ApiActions = require('../actions/ApiActions');
 
 module.exports = {
 
@@ -31,6 +31,7 @@ module.exports = {
     },
 
     subscribeLangChannel: function (lang) {
+      // TODO: unsubscribe
       Pubnub.subscribe({
         channel: 'lang-' + lang,
         callback: function (m) {

@@ -1,5 +1,7 @@
 var Dispatcher = require('../dispatcher/Dispatcher');
 var Constants = require('../constants/Constants');
+var PubnubUtils = require('../utils/PubnubUtils');
+
 
 var AT = Constants.ActionTypes;
 
@@ -18,6 +20,7 @@ module.exports = {
             type: AT.SET_PRIMARY_LANGUAGE,
             lang: lang
         });
+        PubnubUtils.subscribeLangChannel(lang);
     },
 
     setSecondaryLanguage: function (lang) {

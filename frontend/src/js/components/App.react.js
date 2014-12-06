@@ -8,7 +8,6 @@ module.exports = React.createClass({
     render: function () {
         return (
             <div className="spell-checkr-app">
-                app component
                 <Editor />
                 <LangChanell />
                 <PubnubEditor />
