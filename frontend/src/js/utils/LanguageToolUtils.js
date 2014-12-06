@@ -1,6 +1,3 @@
-var unirest = require('unirest');
-
-console.log(unirest);
 module.exports = {
     //
     //checkText = function(text){
