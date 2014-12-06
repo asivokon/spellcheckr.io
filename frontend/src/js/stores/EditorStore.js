@@ -1,13 +1,15 @@
 var Dispatcher = require('../dispatcher/Dispatcher');
 var Constants = require('../constants/Constants');
 var EventEmitter = require('events').EventEmitter;
+var FireBaseUtil = require('../utils/FireBaseUtils');
 var assign = require('object-assign');
 
 var AT = Constants.ActionTypes,
     CHANGE_EVENT = Constants.Events.CHANGE;
 
 var _text = '',
-    _pubNubText = '';
+    _pubNubText = '',
+    _snippetId;
 
 var EditorStore = assign({}, EventEmitter.prototype, {
 
@@ -34,6 +36,10 @@ var EditorStore = assign({}, EventEmitter.prototype, {
 
     getPubnubText: function () {
         return _pubNubText;
+    },
+
+    getSnippetId: function() {
+        return _snippetId;
     }
 
 });
@@ -42,9 +48,18 @@ EditorStore.dispatchToken = Dispatcher.register(function (payload) {
     var action = payload.action;
 
     switch (action.type) {
-
+        case AT.SET_SNIPPET_ID:
+            _snippetId = action.snippetId;
+            FireBaseUtil.getMessage(_snippetId, function (data) {
+                console.log(data);
+                if (data && data.message) {
+                    EditorStore.setText(data.message);
+                }
+            });
+            break;
         case AT.UPDATE_TEXT:
             _text = action.text;
+            FireBaseUtil.putMessage(_snippetId, action.text);
             EditorStore.emitChange();
             break;
 

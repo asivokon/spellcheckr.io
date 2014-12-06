@@ -7,12 +7,13 @@ var AT = Constants.ActionTypes;
 
 module.exports = {
 
-    updateText: function (text) {
+    updateText: function (text, snippetId) {
         Dispatcher.handleViewAction({
             type: AT.UPDATE_TEXT,
-            text: text
+            text: text,
+            snippetId: snippetId
         });
-        PubnubUtils.publish(text, LangChannelStore.getChannelLang(), "snippetId");  // FIXME: real snippetId
+        PubnubUtils.publish(text, LangChannelStore.getChannelLang(), snippetId);
     }
 
 };
