@@ -36,8 +36,9 @@ module.exports = React.createClass({
 
         var snippets = this.state.snippets;
         var snipps = snippets.map(function (snip) {
+          console.log("snip", snip);
             return  (
-                <Snippet key={snip.snippetId} snippet={snip} />
+                <Snippet text={snip.text} />
             );
         });
 
