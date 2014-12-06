@@ -1,6 +1,11 @@
 module.exports = {
 
     ActionTypes: {
+        'UPDATE_TEXT': 'UPDATE_TEXT'
+    },
+
+    Events: {
+        CHANGE: 'change'
     },
 
     PayloadSources: {
