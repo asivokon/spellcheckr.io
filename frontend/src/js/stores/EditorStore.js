@@ -8,6 +8,8 @@ var AT = Constants.ActionTypes,
     CHANGE_EVENT = Constants.Events.CHANGE;
 
 var _text = '',
+    _isHighLighted = false,
+    _highLightedText = '',
     _pubNubText = '',
     _snippetId;
 
@@ -26,7 +28,7 @@ var EditorStore = assign({}, EventEmitter.prototype, {
     },
 
     getText: function () {
-        return _text;
+        return _isHighLighted ? _highLightedText : _text;
     },
 
     setText: function (text) {
@@ -51,14 +53,28 @@ EditorStore.dispatchToken = Dispatcher.register(function (payload) {
         case AT.SET_SNIPPET_ID:
             _snippetId = action.snippetId;
             FireBaseUtil.getMessage(_snippetId, function (data) {
+                console.log(data);
                 if (data && data.message) {
                     EditorStore.setText(data.message);
                 }
             });
             break;
+
         case AT.UPDATE_TEXT:
             _text = action.text;
             FireBaseUtil.putMessage(_snippetId, action.text);
+            EditorStore.emitChange();
+            break;
+
+        case AT.UPDATE_HIGHLIGHT_TEXT:
+            _highLightedText = action.text;
+            _isHighLighted = true;
+            EditorStore.emitChange();
+            break;
+
+        case AT.RESET_HIGHLIGHT:
+            _isHighLighted = false;
+            _highLightedText = '';
             EditorStore.emitChange();
             break;
 

@@ -1,5 +1,7 @@
 var React = require('react/addons');
 var cs = React.addons.classSet;
+var ViewActions = require('../actions/ViewActions');
+var EditActions = require('../actions/EditActions');
 
 module.exports = React.createClass({
 
@@ -18,14 +20,20 @@ module.exports = React.createClass({
 
     render: function () {
         return (
-            <div className="snippet_item" onClick={this._clickSnippet} >
+            <div className="snippet_item"
+                onMouseEnter={this.onMouseEnter}
+                onMouseLeave={this.onMouseLeave} >
                 <span className="snippet_text">{this.props.text}</span>
             </div>
         );
     },
 
-    _clickSnippet: function () {
+    onMouseEnter: function () {
+        ViewActions.getSnippetDiffs(this.props.text)
+    },
 
+    onMouseLeave: function () {
+        EditActions.resetHighLight(false);
     }
 
 });
