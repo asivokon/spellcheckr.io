@@ -2,7 +2,6 @@ var React = require('react');
 var Editor = require('./Editor.react');
 var PubnubEditor = require('./PubnubEditor.react');
 var LangChanell = require('./LangChanell.react');
-var FireBaseMessage = require('./FireBaseMessage.react');
 
 module.exports = React.createClass({
 
@@ -12,7 +11,6 @@ module.exports = React.createClass({
                 <Editor />
                 <LangChanell />
                 <PubnubEditor />
-                <FireBaseMessage />
             </div>
         );
     }
