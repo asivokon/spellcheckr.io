@@ -1,5 +1,4 @@
 var UiActions = require("../actions/UiActions");
-var FireBaseStore = require("../stores/FireBaseStore");
 
 module.exports = {
     updateText: function (text) {

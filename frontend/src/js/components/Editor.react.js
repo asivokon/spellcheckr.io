@@ -4,7 +4,8 @@ var EditorStore = require('../stores/EditorStore');
 
 function getStateFromStores() {
     return {
-        text: EditorStore.getText()
+        text: EditorStore.getText(),
+        snippetId: EditorStore.getSnippetId()
     }
 }
 
@@ -41,7 +42,7 @@ module.exports = React.createClass({
     },
 
     _textChange: function (event) {
-        EditActions.updateText(event.target.value);
+        EditActions.updateText(event.target.value, this.state.snippetId);
     }
 
 });
