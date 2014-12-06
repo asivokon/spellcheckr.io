@@ -1,7 +1,7 @@
 {
-  "name": "spellcheckr",
+  "name": "spellcheckr.io",
   "version": "0.0.1",
-  "description": "spellcheckr.io ",
+  "description": "Use it, man",
   "repository": "",
   "main": "js/app.js",
   "dependencies": {
@@ -10,17 +10,30 @@
     "react": "^0.12.1"
   },
   "devDependencies": {
+    "browser-sync": "^1.7.2",
     "browserify": "^6.3.3",
     "envify": "^3.0.0",
+    "gulp": "^3.8.10",
+    "gulp-autoprefixer": "^2.0.0",
+    "gulp-changed": "^1.0.0",
+    "gulp-imagemin": "^2.0.0",
+    "gulp-jade": "^0.10.0",
+    "gulp-notify": "^2.0.1",
+    "gulp-sass": "^1.2.4",
+    "gulp-sourcemaps": "^1.2.8",
+    "gulp-util": "^3.0.1",
     "jest-cli": "~0.1.18",
+    "pretty-hrtime": "^0.2.2",
+    "react-tools": "^0.12.1",
     "reactify": "^0.17.1",
+    "require-dir": "^0.1.0",
     "uglify-js": "~2.4.15",
-    "watchify": "^2.1.1",
-    "react-tools": "^0.12.1"
+    "vinyl-source-stream": "^1.0.0",
+    "watchify": "^2.1.1"
   },
   "scripts": {
-    "start": "watchify -o dist/bundle.js -v -d .",
-    "build": "NODE_ENV=production browserify . | uglifyjs -cm > dist/bundle.min.js",
+    "start": "gulp",
+    "build": "gulp build",
     "test": "jest"
   },
   "browserify": {
