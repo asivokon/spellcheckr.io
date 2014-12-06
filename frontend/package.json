@@ -10,7 +10,8 @@
     "object-assign": "^2.0.0",
     "pubnub-browserify": "^3.3.0",
     "react": "^0.12.1",
-    "lodash": "~2.4.1"
+    "lodash": "~2.4.1",
+    "material-ui": "^0.3.2"
   },
   "devDependencies": {
     "browser-sync": "^1.7.2",
@@ -21,6 +22,7 @@
     "gulp-changed": "^1.0.0",
     "gulp-imagemin": "^2.0.0",
     "gulp-jade": "^0.10.0",
+    "gulp-less": "^2.0.1",
     "gulp-notify": "^2.0.1",
     "gulp-sass": "^1.2.4",
     "gulp-sourcemaps": "^1.2.8",

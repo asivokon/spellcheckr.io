@@ -17,8 +17,20 @@ module.exports = {
   },
   sass: {
     src: src + "/css/*.{sass,scss}",
+    watch: src + "/css/**.{sass,scss}",
     dest: dest,
     settings: {
+      // Required if you want to use SASS syntax
+      // See https://github.com/dlmanning/gulp-sass/issues/81
+      sourceComments: 'map',
+      imagePath: '/images' // Used by the image-url helper
+    }
+  },
+  less: {
+    src: src + "/css/*.less",
+    watch: src + "/css/**.less",
+    dest: dest,
+    settings2: {
       // Required if you want to use SASS syntax
       // See https://github.com/dlmanning/gulp-sass/issues/81
       sourceComments: 'map',
