@@ -1,5 +1,5 @@
-var ApiActions = require('../actions/ApiActions');
 var Pubnub = require('pubnub-browserify');
+var ApiActions = require('../actions/ApiActions');
 
 module.exports = {
 

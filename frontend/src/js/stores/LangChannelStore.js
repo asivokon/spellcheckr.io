@@ -63,12 +63,12 @@ LangChannelStore.dispatchToken = Dispatcher.register(function (payload) {
     switch(action.type) {
 
         case AT.LANG_CHANNEL_UPDATE:
-            this.updateOrCreateSnipet(action.snippetId, action.text);
+            LangChannelStore.updateOrCreateSnipet(action.snippetId, action.text);
             LangChannelStore.emitChange();
             break;
 
         case AT.SET_PRIMARY_LANGUAGE:
-            this.setChannelLag(action.lang);
+            LangChannelStore.setChannelLag(action.lang);
             break;
 
         default:
