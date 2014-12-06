@@ -2,7 +2,8 @@ module.exports = {
 
     ActionTypes: {
         'UPDATE_TEXT': 'UPDATE_TEXT',
-        'PUBNUB_UPDATE': 'PUBNUB_UPDATE'
+        'PUBNUB_UPDATE': 'PUBNUB_UPDATE',
+        'LANG_CHANNEL_UPDATE': 'LANG_CHANNEL_UPDATE'
     },
 
     Events: {

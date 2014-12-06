@@ -10,6 +10,15 @@ module.exports = {
             type: AT.PUBNUB_UPDATE,
             text: text
         });
+    },
+
+    langChannelUpdate: function (lang, snippetId, text) {
+        Dispatcher.handleViewAction({
+            type: AT.LANG_CHANNEL_UPDATE,
+            snippetId: snippetId,
+            text: text,
+            lang: lang
+        });
     }
 
 };

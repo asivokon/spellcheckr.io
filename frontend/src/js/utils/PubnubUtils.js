@@ -28,5 +28,15 @@ module.exports = {
                 ApiActions.pubnubUpdate(m.typing);
             }
         });
+    },
+
+    subscribeLangChannel: function (lang) {
+      Pubnub.subscribe({
+        channel: 'lang-' + lang,
+        callback: function (m) {
+          console.log('got message: ', m);
+          ApiActions.langChannelUpdate(lang, m.snippetId, m.text);
+        }
+      });
     }
 };
