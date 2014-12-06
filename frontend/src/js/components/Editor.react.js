@@ -29,7 +29,7 @@ module.exports = React.createClass({
     render: function () {
         return (
             <textarea
-                className="textarea"
+                className="editor-textarea"
                 placeholder="Some text must be here"
                 value={this.state.text}
                 onChange={this._textChange}></textarea>
