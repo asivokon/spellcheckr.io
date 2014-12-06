@@ -9,6 +9,10 @@ AppUtils.onAppStart();
 
 PubnubUtils.init();
 
+LanguageToolUtils.checkText("I a married", null, function(response) {
+    console.log(response);
+});
+
 React.render(
     <App />,
     document.getElementById('react')

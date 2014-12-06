@@ -5,7 +5,8 @@ module.exports = {
         publishKey: "pub-c-9deee8d8-bc12-4770-9075-f125b8de84dd"
     },
     languageTools: {
-        url: "https://dnaber-languagetool.p.mashape.com/Languages",
-        api: "AZX2W9kCHwmshVULTkzj5tEWUqgJp1xqjVajsnaQDor1Qsrf3g"
+        languagesUrl: "dnaber-languagetool.p.mashape.com/Languages",
+        checkUrl: "dnaber-languagetool.p.mashape.com/",
+        key: "AZX2W9kCHwmshVULTkzj5tEWUqgJp1xqjVajsnaQDor1Qsrf3g"
     }
-}
+};

@@ -6,13 +6,15 @@ var EditActions = require('../actions/EditActions');
 module.exports = React.createClass({
 
     propTypes: {
-        snippet: React.PropTypes.object
+        //snippet: React.PropTypes.object
+      snippetId: React.PropTypes.string,
+      text: React.PropTypes.string
     },
 
     getInitialState: function () {
         return {
-            id: this.props.snippet.snippetId,
-            text: this.props.snippet.text
+            id: this.props.snippedId,
+            text: this.props.text
         };
     },
 
@@ -21,13 +23,13 @@ module.exports = React.createClass({
             <div className="snippet_item"
                 onMouseEnter={this.onMouseEnter}
                 onMouseLeave={this.onMouseLeave} >
-                <span className="snippet_text">{this.state.text}</span>
+                <span className="snippet_text">{this.props.text}</span>
             </div>
         );
     },
 
     onMouseEnter: function () {
-        ViewActions.getSnippetDiffs(this.props.snippet)
+        ViewActions.getSnippetDiffs(this.props.text)
     },
 
     onMouseLeave: function () {

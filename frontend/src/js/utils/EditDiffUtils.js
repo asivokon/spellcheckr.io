@@ -10,9 +10,9 @@ var _getTextTemplate = function (part) {
 };
 
 module.exports = {
-    getSnipDiff: function (snippet) {
+    getSnipDiff: function (snipText) {
         var text = EditorStore.getText();
-        var diff = jsdiff.diffChars(text, snippet.text);
+        var diff = jsdiff.diffChars(text, snipText);
         var result = diff.map(_getTextTemplate);
 
         EditActions.updateHighLightText(result.join(''));

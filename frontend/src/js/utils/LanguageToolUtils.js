@@ -1,21 +1,34 @@
+var https = require('https');
+var XmlParser = require('xml2js');
+var Settings = require('../utils/Settings');
+
 module.exports = {
-    //
-    //checkText = function(text){
-    //    $.ajax({
-    //        url: 'https://SOMEAPI.p.mashape.com/', // The URL to the API. You can get this in the API page of the API you intend to consume
-    //        type: 'GET', // The HTTP Method, can be GET POST PUT DELETE etc
-    //        data: {}, // Additional parameters here
-    //        datatype: 'json',
-    //        success: function(data) { console.dir((data.source)); },
-    //        error: function(err) { alert(err); },
-    //        beforeSend: function(xhr) {
-    //            xhr.setRequestHeader("X-Mashape-Authorization", "YOUR-MASHAPE-KEY"); // Enter here your Mashape key
-    //        }
-    //    });
-    //}
-    ////unirest.get("")
-    //.header("X-Mashape-Key", "AZX2W9kCHwmshVULTkzj5tEWUqgJp1xqjVajsnaQDor1Qsrf3g")
-    //.end(function (result) {
-    //    console.log(result.status, result.headers, result.body);
-    //});
-}
+    checkText: function(text, lang, callback){
+        var language = lang ? lang: 'en-US';
+        var request = https.request({
+                hostname: Settings.languageTools.checkUrl,
+                path: '/',
+                method: 'POST',
+                headers: {
+                    'X-Mashape-Key': Settings.languageTools.key,
+                    'Content-Type': 'application/x-www-form-urlencoded'
+                }
+            },
+            function(response) {
+                response.on('data', function(data) {
+                    XmlParser.parseString(data, function(err, result) {
+                        var errors = result && result.matches && result.matches.error?
+                            result.matches.error.map(function(item) {
+                            return item.$;
+                        }): [];
+                        console.dir(result);
+                        if (callback) {
+                            callback(errors);
+                        }
+                    });
+                });
+            });
+        request.end('language=' + language + '&text=' + text);
+    }
+
+};

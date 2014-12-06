@@ -6,11 +6,11 @@ var AT = Constants.ActionTypes;
 
 module.exports = {
 
-    getSnippetDiffs: function (snippet) {
+    getSnippetDiffs: function (text) {
         Dispatcher.handleViewAction({
             type: AT.GET_SNIPPET_DIFF,
-            snippet: snippet
+            text: text
         });
-        EditDiffUtils.getSnipDiff(snippet)
+        EditDiffUtils.getSnipDiff(text)
     }
 };
