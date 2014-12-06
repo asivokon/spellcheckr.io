@@ -39,6 +39,10 @@ var LangChannelStore = assign({}, EventEmitter.prototype, {
         return _lang;
     },
 
+    setChannelLag: function (lang) {
+        _lang = lang;
+    },
+
     updateOrCreateSnipet: function (snippetId, text) {
       var existing = _.find(_snippets, {'snippetId' : snippetId});
       if (existing) {
@@ -61,6 +65,10 @@ LangChannelStore.dispatchToken = Dispatcher.register(function (payload) {
         case AT.LANG_CHANNEL_UPDATE:
             this.updateOrCreateSnipet(action.snippetId, action.text);
             LangChannelStore.emitChange();
+            break;
+
+        case AT.SET_PRIMARY_LANGUAGE:
+            this.setChannelLag(action.lang);
             break;
 
         default:

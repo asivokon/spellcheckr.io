@@ -14,6 +14,7 @@ module.exports = {
 
     onAppStart: function () {
         this.generateSnippetId();
+        UiActions.setPrimaryLanguage('ukr');        // TODO: autoguess lang by IP
     }
 
 };
