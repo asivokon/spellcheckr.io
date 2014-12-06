@@ -82,7 +82,7 @@ EditorStore.dispatchToken = Dispatcher.register(function (payload) {
             EditorStore.emitChange();
             break;
 
-        case AT.PUBNUB_UPDATE:
+        case AT.SUGGEST_REQUEST:
             _pubNubText = action.text;
             EditorStore.emitChange();
             break;

@@ -15,8 +15,6 @@ module.exports = React.createClass({
                 <Editor />
                 <div className="lang-snippets-wrapper">
                     <LangChanell />
-                    <PubnubEditor />
-                    <RaisedButton label="Default" />
                 </div>
             </div>
         );
