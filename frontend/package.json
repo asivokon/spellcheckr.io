@@ -1,0 +1,32 @@
+{
+  "name": "spellcheckr",
+  "version": "0.0.1",
+  "description": "spellcheckr.io ",
+  "repository": "",
+  "main": "js/app.js",
+  "dependencies": {
+    "flux": "^2.0.1",
+    "object-assign": "^2.0.0",
+    "react": "^0.12.1"
+  },
+  "devDependencies": {
+    "browserify": "^6.3.3",
+    "envify": "^3.0.0",
+    "jest-cli": "~0.1.18",
+    "reactify": "^0.17.1",
+    "uglify-js": "~2.4.15",
+    "watchify": "^2.1.1",
+    "react-tools": "^0.12.1"
+  },
+  "scripts": {
+    "start": "watchify -o dist/bundle.js -v -d .",
+    "build": "NODE_ENV=production browserify . | uglifyjs -cm > dist/bundle.min.js",
+    "test": "jest"
+  },
+  "browserify": {
+    "transform": [
+      "reactify",
+      "envify"
+    ]
+  }
+}
