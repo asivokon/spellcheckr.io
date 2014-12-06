@@ -2,41 +2,37 @@ var FireBase = require('firebase');
 var Settings = require('./Settings');
 
 var FireBaseRoutes = {
-    messages: 'messages/',
-    responses: 'responses/',
-
-    getMessagesInstance: function (messageId) {
-        return new FireBase(Settings.fireBaseUrl).child(FireBaseRoutes.messages + "/" + messageId);
+    messages: function (messageId) {
+        return new FireBase(Settings.fireBaseUrl).child("messages/" + messageId);
     },
 
-    getResponsesInstance: function (messageId) {
-        return new FireBase(Settings.fireBaseUrl).child(FireBaseRoutes.responses + "/" + messageId);
+    responses: function (messageId) {
+        return new FireBase(Settings.fireBaseUrl).child("responses/" + messageId);
     }
 };
 
 module.exports = {
     putMessage: function (messageId, text) {
-        var db = FireBaseRoutes.getMessagesInstance(messageId);
-        db.set({message: text, date: new Date().getTime()});
+        FireBaseRoutes.messages(messageId).
+            set({message: text, date: new Date().getTime()});
     },
 
     putResponse: function (messageId, text) {
-        debugger;
-        var db = FireBaseRoutes.getResponsesInstance(messageId);
-        db.push({message: text, date: new Date().getTime()});
+        FireBaseRoutes.responses(messageId).
+            push({message: text, date: new Date().getTime()});
     },
 
-    getMessage: function (messageId, callback, sender) {
-        var db = FireBaseRoutes.getMessagesInstance(messageId);
-        db.on('value', function (snapshot) {
-            callback.call(sender, snapshot.val());
-        });
+    getMessage: function (messageId, callback) {
+        FireBaseRoutes.messages(messageId).
+            on('value', function (snapshot) {
+                callback(snapshot.val());
+            });
     },
 
     getResponses: function (messageId, callback, sender) {
-        var db = FireBaseRoutes.getResponsesInstance(messageId);
-        db.on('value', function (snapshot) {
-            callback.call(sender, snapshot.val());
-        });
+        FireBaseRoutes.responses(messageId).
+            on('value', function (snapshot) {
+                callback.call(sender, snapshot.val());
+            });
     }
 };

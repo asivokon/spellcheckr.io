@@ -3,6 +3,7 @@ var Constants = require('../constants/Constants');
 var EventEmitter = require('events').EventEmitter;
 var FireBaseUtil = require('../utils/FireBaseUtils');
 var assign = require('object-assign');
+var EditorStore = require('../stores/EditorStore');
 
 var AT = Constants.ActionTypes,
     CHANGE_EVENT = Constants.Events.CHANGE,
@@ -27,6 +28,12 @@ FireBaseStore.dispatchToken = Dispatcher.register(function (payload) {
     switch (action.type) {
         case AT.SET_SNIPPET_ID:
             snippetId = action.snippetId;
+            FireBaseUtil.getMessage(snippetId, function (data) {
+                console.log(data);
+                if (data && data.message) {
+                    EditorStore.setText(data.message);
+                }
+            });
             break;
         case AT.UPDATE_TEXT:
             FireBaseUtil.putMessage(snippetId, action.text);

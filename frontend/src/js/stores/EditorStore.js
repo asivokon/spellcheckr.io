@@ -27,6 +27,11 @@ var EditorStore = assign({}, EventEmitter.prototype, {
         return _text;
     },
 
+    setText: function (text) {
+        _text = text;
+        this.emitChange();
+    },
+
     getPubnubText: function () {
         return _pubNubText;
     }
@@ -36,7 +41,7 @@ var EditorStore = assign({}, EventEmitter.prototype, {
 EditorStore.dispatchToken = Dispatcher.register(function (payload) {
     var action = payload.action;
 
-    switch(action.type) {
+    switch (action.type) {
 
         case AT.UPDATE_TEXT:
             _text = action.text;

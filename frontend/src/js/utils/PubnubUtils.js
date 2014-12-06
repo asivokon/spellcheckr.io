@@ -1,12 +1,13 @@
 var Pubnub = require('pubnub-browserify');
 var ApiActions = require('../actions/ApiActions');
+var Settings = require("./Settings");
 
 module.exports = {
 
     init: function () {
         Pubnub = Pubnub.init({
-            publish_key: 'pub-c-9deee8d8-bc12-4770-9075-f125b8de84dd',
-            subscribe_key: 'sub-c-56f28a4a-7d24-11e4-baaa-02ee2ddab7fe'
+            publish_key: Settings.pubNub.publishKey,
+            subscribe_key: Settings.pubNub.subscribeKey
         });
         this.subscribe();
     },
