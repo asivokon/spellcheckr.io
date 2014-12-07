@@ -23,11 +23,11 @@ module.exports = {
                                 return item.$;
                             }) : [];
                         if (callback) {
-                                result = '';
-                                var lastIndex = 0;
+                            result = '';
+                            var lastIndex = 0;
                             for (var i = 0; i < errors.length; i++) {
                                 var error = errors[i];
-                                if (error.errorlength) {
+                                if (error.errorlength && lastIndex <= parseInt(error.fromx)) {
                                     var word = error.replacements.split("#")[0];
                                     if (word) {
                                         result += text.substring(lastIndex, parseInt(error.fromx, 10)) + word;
@@ -38,7 +38,9 @@ module.exports = {
                             if (lastIndex < text.length) {
                                 result += text.substring(lastIndex);
                             }
-                            callback(result);
+                            if (result != text) {
+                                callback(result);
+                            }
                         }
                     });
                 });
