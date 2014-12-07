@@ -1,6 +1,6 @@
 var React = require('react/addons');
 var cs = React.addons.classSet;
-var AnswersStore = require('../../stores/AnswerStore');
+var AnswersStore = require('../../stores/AnswersStore');
 var Answer = require('./Answer.react.js');
 var Toolbar = require('../Toolbar.react')
 

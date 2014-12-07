@@ -8,7 +8,19 @@ var Firebase = require('../utils/FireBaseUtils');
 var AT = Constants.ActionTypes,
     CHANGE_EVENT = Constants.Events.CHANGE;
 
-var AnswersStore = assign({}, EventEmitter.prototype, {
+//test mock for answers
+var _answers = [
+    {
+        text: 'answer 1, lalala lalal lalalla',
+        id: 1
+    },
+    {
+        text: 'answer 2, llolo lol o lo alala',
+        id: 2
+    }
+];
+
+var AnswerStore = assign({}, EventEmitter.prototype, {
 
     emitChange: function () {
         this.emit(CHANGE_EVENT);
@@ -20,10 +32,15 @@ var AnswersStore = assign({}, EventEmitter.prototype, {
 
     removeChangeListener: function (callback) {
         this.removeListener(CHANGE_EVENT, callback);
+    },
+
+    getAnswers: function () {
+        return _answers;
     }
+
 });
 
-AnswersStore.dispatchToken = Dispatcher.register(function (payload) {
+AnswerStore.dispatchToken = Dispatcher.register(function (payload) {
     var action = payload.action;
 
     switch (action.type) {
@@ -46,4 +63,5 @@ AnswersStore.dispatchToken = Dispatcher.register(function (payload) {
 
 });
 
-module.exports = AnswersStore;
+module.exports = AnswerStore;
+
