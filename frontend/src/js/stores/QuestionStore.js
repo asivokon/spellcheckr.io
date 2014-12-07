@@ -11,7 +11,7 @@ var AT = Constants.ActionTypes,
 
 //test mock for answers
 var _questions = [], // {text, id}
-    lang = null;
+    _lang = null;
 
 var QuestionsStore = assign({}, EventEmitter.prototype, {
 
