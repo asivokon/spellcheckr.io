@@ -2,6 +2,7 @@ var React = require('react/addons');
 var cs = React.addons.classSet;
 var QuestionStore = require('../../stores/QuestionStore');
 var Question = require('./Question.react');
+var Toolbar = require('../Toolbar.react')
 
 function getStateFromStores() {
     return {
@@ -25,10 +26,9 @@ module.exports = React.createClass({
 
     render: function () {
         var state = this.props.state;
-        var classes = cs({
-            'questions-view': true,
-            'collapsed': !state
-        });
+        if (state) {
+            return <Toolbar />;
+        }
 
         var questions = this.state.questions;
         if (questions && Object.keys(questions).length < 1) {
@@ -42,7 +42,7 @@ module.exports = React.createClass({
         });
 
         return (
-            <div className={classes}>
+            <div className="questions-view">
                 <h4>Questions View</h4>
                 {list}
             </div>
