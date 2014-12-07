@@ -32,7 +32,6 @@ var LangChannelStore = assign({}, EventEmitter.prototype, {
     },
 
     getSnippets: function () {
-        console.log('SNIPPETS', _snippets);
         return _snippets;
     },
 

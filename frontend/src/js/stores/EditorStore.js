@@ -57,7 +57,6 @@ EditorStore.dispatchToken = Dispatcher.register(function (payload) {
         case AT.SET_SNIPPET_ID:
             _snippetId = action.snippetId;
             FireBaseUtil.getMessage(_snippetId, function (data) {
-                console.log(data);
                 if (data && data.message) {
                     EditorStore.setText(data.message);
                 }

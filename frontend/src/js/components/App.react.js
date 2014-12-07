@@ -1,6 +1,5 @@
 var React = require('react');
 var Editor = require('./Editor.react');
-var PubnubEditor = require('./PubnubEditor.react');
 var LangChanell = require('./LangChanell.react');
 
 

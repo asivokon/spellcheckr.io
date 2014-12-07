@@ -30,10 +30,10 @@ module.exports = React.createClass({
     },
 
     render: function () {
-        var mainClass = cs({
+        var mainClass = {
             'content-editor-wrapper': true,
             'highlight': this.state.isHighlight
-        });
+        };
 
         return (
             <div className={mainClass}>

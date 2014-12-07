@@ -29,7 +29,6 @@ SuggestBotStore.dispatchToken = Dispatcher.register(function (payload) {
         case AT.UPDATE_TEXT:
             LanguageToolUtils.checkText(action.text, null, function(response){
                 EditorStore.emitChange();
-                console.log(response);
             });
             break;
     }
