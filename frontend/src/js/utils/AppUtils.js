@@ -11,6 +11,18 @@ module.exports = {
     onAppStart: function () {
         this.generateSnippetId();
         UiActions.setPrimaryLanguage('eng');        // TODO: autoguess lang by IP
+    },
+
+    throttle: function (f, delay) {
+      var timer = null;
+      return function () {
+        var context = this, args = arguments;
+        clearTimeout(timer);
+        timer = window.setTimeout(function () {
+          f.apply(context, args);
+        },
+        delay || 500);
+      }
     }
 
 };
