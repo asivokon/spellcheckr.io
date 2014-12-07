@@ -34,7 +34,7 @@ module.exports = {
         // TODO: indexOn lang
         FireBaseRoutes.messages().
             //equalTo(lang).            // TODO:
-            on('value', function (snapshot) {
+            once('value', function (snapshot) {
                 var val = snapshot.val();
                 var messages = [];
                 for (var id in val) {

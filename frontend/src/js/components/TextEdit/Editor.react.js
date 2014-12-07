@@ -53,7 +53,7 @@ module.exports = React.createClass({
             <Textarea
                 placeholder={this.getPlaceholderText()}
                 onChange={this._textChange}
-                value={value}></textarea>
+                value={value} />
         );
     },
 
