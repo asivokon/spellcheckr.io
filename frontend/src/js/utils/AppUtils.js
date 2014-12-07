@@ -1,9 +1,6 @@
 var UiActions = require("../actions/UiActions");
 
 module.exports = {
-    updateText: function (text) {
-    },
-
     generateSnippetId: function () {
         var hash = window.location.hash,
             uid = hash && hash.length ? hash.substring(1) : btoa('' + new Date().getTime());

@@ -7,9 +7,9 @@ var AT = Constants.ActionTypes;
 
 module.exports = {
 
-    updateText: function (text, snippetId) {
+    fireQuestion: function (text, snippetId) {
         Dispatcher.handleViewAction({
-            type: AT.UPDATE_TEXT,
+            type: AT.QUESTION_FIRED,
             text: text,
             snippetId: snippetId
         });

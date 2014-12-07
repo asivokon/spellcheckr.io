@@ -10,7 +10,6 @@ var AT = Constants.ActionTypes,
 var _text = '',
     _isHighLighted = false,
     _highLightedText = '',
-    _pubNubText = '',
     _snippetId;
 
 var EditorStore = assign({}, EventEmitter.prototype, {
@@ -40,10 +39,6 @@ var EditorStore = assign({}, EventEmitter.prototype, {
         this.emitChange();
     },
 
-    getPubnubText: function () {
-        return _pubNubText;
-    },
-
     getSnippetId: function() {
         return _snippetId;
     }
@@ -63,7 +58,7 @@ EditorStore.dispatchToken = Dispatcher.register(function (payload) {
             });
             break;
 
-        case AT.UPDATE_TEXT:
+        case AT.QUESTION_FIRED:
             _text = action.text;
             FireBaseUtil.putMessage(_snippetId, action.text);
             EditorStore.emitChange();
@@ -78,11 +73,6 @@ EditorStore.dispatchToken = Dispatcher.register(function (payload) {
         case AT.RESET_HIGHLIGHT:
             _isHighLighted = false;
             _highLightedText = '';
-            EditorStore.emitChange();
-            break;
-
-        case AT.SUGGEST_REQUEST:
-            _pubNubText = action.text;
             EditorStore.emitChange();
             break;
 

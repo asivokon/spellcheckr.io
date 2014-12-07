@@ -1,7 +1,6 @@
 var React = require('react');
 var EditActions = require('../actions/EditActions');
 var EditorStore = require('../stores/EditorStore');
-var ContentEditable = require('./ContentEditable.react');
 require('react/addons');
 var cs = React.addons.classSet;
 
@@ -54,7 +53,7 @@ module.exports = React.createClass({
     },
 
     _textChange: function (event) {
-        EditActions.updateText(event.target.value, this.state.snippetId);
+        EditActions.fireQuestion(event.target.value, this.state.snippetId);
     }
 
 });
