@@ -10,16 +10,7 @@ var AT = Constants.ActionTypes,
     CHANGE_EVENT = Constants.Events.CHANGE;
 
 //test mock for answers
-var _answers = [
-    {
-        text: 'answer 1, lalala lalal lalalla',
-        id: 1
-    },
-    {
-        text: 'answer 2, llolo lol o lo alala',
-        id: 2
-    }
-];
+var _answers = []; // {answer, authorUid, question, snippedId}
 
 var AnswerStore = assign({}, EventEmitter.prototype, {
 
@@ -56,12 +47,11 @@ AnswerStore.dispatchToken = Dispatcher.register(function (payload) {
                 authorUid: action.authorUid,
                 snippetId: action.snippetId
             };
-            Firebase.putResponse(message.snippetId, message);
+            Firebase.putResponse(message);
             Pubnub.publishAnswer(action.snippetId, message);
             //update textarea text...
             EditorStore.setQuestion(action.snippetId, action.answer);
             AnswerStore.emitChange();
-            console.log("Answer send to: ", action.snippetId);
             break;
 
         default:
