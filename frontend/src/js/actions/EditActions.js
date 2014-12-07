@@ -15,7 +15,7 @@ module.exports = {
             snippetId: snippetId,
             lang: lang
         });
-        PubnubUtils.publish(text, lang, snippetId);
+        PubnubUtils.publishQuestion(text, lang, snippetId);
     },
 
     updateHighLightText: function (text) {
