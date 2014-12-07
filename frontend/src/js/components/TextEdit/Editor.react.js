@@ -34,11 +34,18 @@ module.exports = React.createClass({
         EditorStore.removeChangeListener(this._onChange);
     },
 
-    render: function () {
+    getPlaceholderText: function () {
+        var appState = AppStore.getAppState();
+        if (appState == Constants.AppState.QUESTION_STATE) {
+            return 'Type in the text you want to proofread...';
+        }
+        return 'Type in your suggestion here...'
+    },
 
+    render: function () {
         return (
             <textarea
-                placeholder="Ask your question..."
+                placeholder={this.getPlaceholderText()}
                 onChange={this._textChange}
                 value={this.state.text}></textarea>
 
@@ -51,16 +58,18 @@ module.exports = React.createClass({
 
     _textChange: function (event) {
         var appState = AppStore.getAppState();
+        var text = event.target.value;
         if (appState == Constants.AppState.QUESTION_STATE) {
-            EditActions.fireQuestion(event.target.value, this.state.snippetId);
+            EditActions.fireQuestion(text, this.state.snippetId);
         }
         else {
             if (this.state.questionId) {
-                ApiActions.fireAnswer(this.state.questionText, event.target.value,
+                ApiActions.fireAnswer(this.state.questionText, text,
                     this.state.questionId, this.state.snippetId);
             }
             else {
                 console.log("No question selected!");
+                this.setState({text: text});
             }
         }
     }
