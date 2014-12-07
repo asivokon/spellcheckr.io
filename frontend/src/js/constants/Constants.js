@@ -1,13 +1,14 @@
 module.exports = {
 
     ActionTypes: {
-        'UPDATE_TEXT': 'UPDATE_TEXT',
-        'SUGGEST_REQUEST': 'SUGGEST_REQUEST',
+        'QUESTION_FIRE': 'QUESTION_FIRE',                   // { text: 'question', snippetId: uid }
+        'QUESTION_RECEIVED': 'QUESTION_RECEIVED',           // { text: 'question', snippetId: uid }
+        'ANSWER_FIRE':'ANSWER_FIRE',                        // { snippedId: uid, text: 'answer' }
+        'ANSWER_RECEIVED':'ANSWER_RECEIVED',                // { text: 'answer' }
         'GET_SNIPPET_DIFF': 'GET_SNIPPET_DIFF',
         'UPDATE_HIGHLIGHT_TEXT': 'UPDATE_HIGHLIGHT_TEXT',
         'RESET_HIGHLIGHT': 'RESET_HIGHLIGHT',
-        'LANG_CHANNEL_UPDATE': 'LANG_CHANNEL_UPDATE',       // { snippetId: '1234abef', lang: 'ukr', text: 'foobar' }
-        'SET_SNIPPET_ID': 'SET_SNIPPET_ID',                 // { snippetId: '1234abef' }
+        'SET_SNIPPET_ID': 'SET_SNIPPET_ID',                 // { snippetId: uid }
         'SET_PRIMARY_LANGUAGE': 'SET_PRIMARY_LANGUAGE',     // { lang: 'ukr' }
         'SET_SECONDARY_LANGUAGE': 'SET_SECONDARY_LANGUAGE'  // { lang: 'eng' }
     },

@@ -5,19 +5,11 @@ var AT = Constants.ActionTypes;
 
 module.exports = {
 
-    suggestRequest: function (text) {
+    questionReceived: function (snippetId, text) {
         Dispatcher.handleViewAction({
-            type: AT.SUGGEST_REQUEST,
-            text: text
-        });
-    },
-
-    langChannelUpdate: function (lang, snippetId, text) {
-        Dispatcher.handleViewAction({
-            type: AT.LANG_CHANNEL_UPDATE,
+            type: AT.QUESTION_RECEIVED,
             snippetId: snippetId,
-            text: text,
-            lang: lang
+            text: text
         });
     }
 

@@ -2,7 +2,7 @@ var Dispatcher = require('../dispatcher/Dispatcher');
 var Constants = require('../constants/Constants');
 var EventEmitter = require('events').EventEmitter;
 var assign = require('object-assign');
-var lodash = require('lodash');
+var EditorStore = require("./EditorStore");
 
 var AT = Constants.ActionTypes,
     CHANGE_EVENT = Constants.Events.CHANGE;
@@ -44,17 +44,17 @@ var LangChannelStore = assign({}, EventEmitter.prototype, {
     },
 
     updateOrCreateSnipet: function (snippetId, text) {
-      for (var i = 0; i < _snippets.length; i++) {
-        if (_snippets[i].snippetId == snippetId) {
-          _snippets[i].text = text;
-          return;
+        for (var i = 0; i < _snippets.length; i++) {
+            if (_snippets[i].snippetId == snippetId) {
+                _snippets[i].text = text;
+                return;
+            }
         }
-      }
 
-      _snippets.push({
-        snippetId: snippetId,
-        text: text
-      });
+        _snippets.push({
+            snippetId: snippetId,
+            text: text
+        });
     }
 
 });
@@ -62,11 +62,13 @@ var LangChannelStore = assign({}, EventEmitter.prototype, {
 LangChannelStore.dispatchToken = Dispatcher.register(function (payload) {
     var action = payload.action;
 
-    switch(action.type) {
+    switch (action.type) {
 
-        case AT.LANG_CHANNEL_UPDATE:
-            LangChannelStore.updateOrCreateSnipet(action.snippetId, action.text);
-            LangChannelStore.emitChange();
+        case AT.QUESTION_RECEIVED:
+            if (action.snippetId != EditorStore.getSnippetId()) {
+                LangChannelStore.updateOrCreateSnipet(action.snippetId, action.text);
+                LangChannelStore.emitChange();
+            }
             break;
 
         case AT.SET_PRIMARY_LANGUAGE:

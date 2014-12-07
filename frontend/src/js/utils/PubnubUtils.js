@@ -10,7 +10,6 @@ module.exports = {
             subscribe_key: Settings.pubNub.subscribeKey
         });
         this.subscribeLangChannel('eng');
-        //this.subscribe();
     },
 
     publish: function (text, lang, snippetId) {
@@ -24,22 +23,17 @@ module.exports = {
         });
     },
 
-    subscribe: function () {
+    subscribeToChannel: function (channel) {
+        // TODO: unsubscribe
         Pubnub.subscribe({
-            channel: 'lang-eng',
+            channel: channel,
             callback: function (m) {
-                ApiActions.suggestRequest(m.text);
+                ApiActions.questionReceived(m.snippetId, m.text);
             }
         });
     },
 
     subscribeLangChannel: function (lang) {
-        // TODO: unsubscribe
-        Pubnub.subscribe({
-            channel: 'lang-' + lang,
-            callback: function (m) {
-                ApiActions.langChannelUpdate(lang, m.snippetId, m.text);
-            }
-        });
+        this.subscribeToChannel('lang-' + lang);
     }
 };
