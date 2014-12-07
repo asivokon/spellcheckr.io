@@ -61,7 +61,7 @@ module.exports = React.createClass({
         }
         else {
             // TODO we need author ID and question which we answer
-            ApiActions.fireAnswer(null, event.target.value, null, this.snippetId);
+            ApiActions.fireAnswer(null, event.target.value, null, this.state.snippetId);
         }
     }
 

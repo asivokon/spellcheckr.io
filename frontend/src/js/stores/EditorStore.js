@@ -1,7 +1,7 @@
 var Dispatcher = require('../dispatcher/Dispatcher');
 var Constants = require('../constants/Constants');
 var EventEmitter = require('events').EventEmitter;
-var FireBaseUtil = require('../utils/FireBaseUtils');
+var FireBaseUtils = require('../utils/FireBaseUtils');
 var assign = require('object-assign');
 var PubNub = require('../utils/PubnubUtils');
 
@@ -59,14 +59,14 @@ EditorStore.dispatchToken = Dispatcher.register(function (payload) {
     switch (action.type) {
         case AT.SET_SNIPPET_ID:
             _snippetId = action.snippetId;
-            FireBaseUtil.getMessage(_snippetId, function (data) {
+            FireBaseUtils.getMessage(_snippetId, function (data) {
                 EditorStore.setText(data && data.message || '');
             });
             PubNub.subscribePrivateChannel(_snippetId);
             break;
 
         case AT.QUESTION_FIRE:
-            FireBaseUtil.putMessage(_snippetId, action.text, action.lang);
+            FireBaseUtils.putMessage(_snippetId, action.text, action.lang);
             EditorStore.emitChange();
             break;
 
@@ -102,8 +102,8 @@ EditorStore.dispatchToken = Dispatcher.register(function (payload) {
                 authorUid: action.authorUid,
                 snippetId: action.snippetId
             };
-            Firebase.putResponse(message.snippetId, message);
-            Pubnub.publishAnswer(action.snippetId, message);
+            FireBaseUtils.putResponse(message.snippetId, message);
+            PubNub.publishAnswer(action.snippetId, message);
             EditorStore.emitChange();
             console.log("Answer send to: ", action.snippetId);
             break;
