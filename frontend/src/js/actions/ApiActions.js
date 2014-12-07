@@ -24,6 +24,15 @@ module.exports = {
         });
     },
 
+    fireLanguageDetected: function (question, questionId, lang) {
+        Dispatcher.handleViewAction({
+            type: AT.QUESTION_LANGUAGE_DETECTED,
+            question: question,
+            questionId: questionId,
+            lang: lang
+        });
+    },
+
     answerReceived: function (answer) {
         Dispatcher.handleViewAction({
             type: AT.ANSWER_RECEIVED,

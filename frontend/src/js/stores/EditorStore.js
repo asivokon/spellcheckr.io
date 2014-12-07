@@ -12,6 +12,7 @@ var editor = {
         text: '',
         questionId: null,
         questionText: '',
+        detectedLanguage: null,
         answers: [] // {authorUid, text}
     },
     _isHighLighted = false,
@@ -65,6 +66,14 @@ var EditorStore = assign({}, EventEmitter.prototype, {
 
     getAnswers: function () {
         return editor.answers;
+    },
+
+    getDetectedLanguage: function () {
+        return editor.detectedLanguage;
+    },
+
+    setDetectedLanguage: function (lang) {
+        editor.detectedLanguage = lang;
     }
 
 });
@@ -126,6 +135,10 @@ EditorStore.dispatchToken = Dispatcher.register(function (payload) {
 
         case AT.QUESTION_SELECTED:
             EditorStore.setQuestion(action.questionId, action.question);
+            break;
+
+        case AT.QUESTION_LANGUAGE_DETECTED:
+            EditorStore.setDetectedLanguage(action.lang);
             break;
 
         default:

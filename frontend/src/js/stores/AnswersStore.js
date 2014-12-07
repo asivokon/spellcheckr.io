@@ -61,4 +61,3 @@ AnswerStore.dispatchToken = Dispatcher.register(function (payload) {
 });
 
 module.exports = AnswerStore;
-

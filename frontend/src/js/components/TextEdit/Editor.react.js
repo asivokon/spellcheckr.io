@@ -13,7 +13,8 @@ function getStateFromStores() {
         isHighlight: EditorStore.getHighLightedState(),
         snippetId: EditorStore.getSnippetId(),
         questionId: EditorStore.getQuestionId(),
-        questionText: EditorStore.getQuestionText()
+        questionText: EditorStore.getQuestionText(),
+        detectedLanguage: EditorStore.getDetectedLanguage()
     }
 }
 
@@ -44,16 +45,18 @@ module.exports = React.createClass({
     },
 
     render: function () {
-        //debugger;
         var appState = this._getAppState(),
             value = appState !== Constants.AppState.QUESTION_STATE ?
                 this.state.questionText : this.state.text;
 
         return (
-            <Textarea
-                placeholder={this.getPlaceholderText()}
-                onChange={this._textChange}
-                value={value} />
+            <div>
+                <Textarea
+                    placeholder={this.getPlaceholderText()}
+                    onChange={this._textChange}
+                    value={value} />
+                <p>Detected language: {this.state.detectedLanguage}</p>
+            </div>
         );
     },
 

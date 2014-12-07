@@ -74,7 +74,6 @@ QuestionsStore.dispatchToken = Dispatcher.register(function (payload) {
                     ApiActions.questionReceived(q.id, q.text, q.author);
                 });
             });
-
             break;
 
         default:
