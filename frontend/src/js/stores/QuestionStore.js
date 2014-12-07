@@ -3,6 +3,8 @@ var Constants = require('../constants/Constants');
 var EventEmitter = require('events').EventEmitter;
 var assign = require('object-assign');
 var EditorStore = require('./EditorStore');
+var FireBaseUtils = require('../utils/FireBaseUtils');
+var ApiActions = require('../actions/ApiActions');
 
 var AT = Constants.ActionTypes,
     CHANGE_EVENT = Constants.Events.CHANGE;
@@ -66,6 +68,14 @@ QuestionsStore.dispatchToken = Dispatcher.register(function (payload) {
         case AT.SET_PRIMARY_LANGUAGE:
             QuestionsStore.setQuestionsLanguage(action.lang);
             QuestionsStore.emitChange();
+
+            FireBaseUtils.getMessagesByLang(action.lang, function (questions) {
+                questions.forEach(function (q) {
+                    // TODO: pass more (like date)
+                    ApiActions.questionReceived(q.id, q.text);
+                });
+            });
+
             break;
 
         default:

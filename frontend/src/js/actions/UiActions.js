@@ -1,7 +1,6 @@
 var Dispatcher = require('../dispatcher/Dispatcher');
 var Constants = require('../constants/Constants');
 var PubnubUtils = require('../utils/PubnubUtils');
-var FireBaseUtils = require('../utils/FireBaseUtils');
 var ApiActions = require('./ApiActions');
 
 
@@ -23,13 +22,6 @@ module.exports = {
             lang: lang
         });
         PubnubUtils.subscribeLangChannel(lang);
-        FireBaseUtils.getMessagesByLang(lang, function (questions) {
-            console.log('Firebase messages by lang', lang, questions);
-            questions.forEach(function (q) {
-                // TODO: pass more (like date)
-                ApiActions.questionReceived(q.id, q.text);
-            });
-        });
     },
 
     setSecondaryLanguage: function (lang) {
