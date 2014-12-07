@@ -13,7 +13,7 @@ module.exports = React.createClass({
         return (
             <li className="listing-item" onClick={this.questionClick}>
                 <div className="listing-text">{question.text}</div>
-                <div className="listing-menu"><span>by Bot</span></div>
+                <div className="listing-menu"><span>{question.author}</span></div>
             </li>
         );
     },

@@ -71,7 +71,7 @@ QuestionsStore.dispatchToken = Dispatcher.register(function (payload) {
             FireBaseUtils.getMessagesByLang(action.lang, function (questions) {
                 questions.forEach(function (q) {
                     // TODO: pass more (like date)
-                    ApiActions.questionReceived(q.id, q.text);
+                    ApiActions.questionReceived(q.id, q.text, q.author);
                 });
             });
 

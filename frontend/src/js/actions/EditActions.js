@@ -12,7 +12,8 @@ module.exports = {
             type: AT.QUESTION_FIRE,
             text: text,
             snippetId: snippetId,
-            lang: lang
+            lang: lang,
+            authorUid: AppStore.getUserName()
         });
     },
 

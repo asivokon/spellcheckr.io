@@ -18,10 +18,10 @@ module.exports = {
         });
     },
 
-    publishQuestion: function (text, lang, snippetId) {
+    publishQuestion: function (text, lang, snippetId, author) {
         Pubnub.publish({
             channel: 'lang-' + lang,
-            message: {text: text, lang: lang, snippetId: snippetId}
+            message: {text: text, lang: lang, snippetId: snippetId, authorUid: author}
         });
     },
 
@@ -33,7 +33,7 @@ module.exports = {
     },
     subscribeLangChannel: function (lang) {
         this.subscribeToChannel('lang-' + lang, function (m) {
-            ApiActions.questionReceived(m.snippetId, m.text);
+            ApiActions.questionReceived(m.snippetId, m.text, m.authorUid);
         });
     },
 

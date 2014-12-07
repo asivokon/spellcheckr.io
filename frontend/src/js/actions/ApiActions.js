@@ -5,11 +5,12 @@ var AT = Constants.ActionTypes;
 
 module.exports = {
 
-    questionReceived: function (snippetId, text) {
+    questionReceived: function (snippetId, text, authorUid) {
         Dispatcher.handleViewAction({
             type: AT.QUESTION_RECEIVED,
             snippetId: snippetId,
-            text: text
+            text: text,
+            authorUid: authorUid
         });
     },
 

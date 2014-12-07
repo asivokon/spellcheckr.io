@@ -44,7 +44,7 @@ var EditorStore = assign({}, EventEmitter.prototype, {
         return editor.questionId;
     },
 
-    setQuestion: function(id, text) {
+    setQuestion: function (id, text) {
         editor.questionId = id;
         editor.questionText = text;
         this.emitChange();
@@ -82,8 +82,8 @@ EditorStore.dispatchToken = Dispatcher.register(function (payload) {
             break;
 
         case AT.QUESTION_FIRE:
-            FireBaseUtils.putMessage(_snippetId, action.text, action.lang);
-            PubNub.publishQuestion(action.text, action.lang, _snippetId);
+            FireBaseUtils.putMessage(_snippetId, action.text, action.lang, action.authorUid);
+            PubNub.publishQuestion(action.text, action.lang, _snippetId, action.authorUid);
             EditorStore.emitChange();
             break;
 

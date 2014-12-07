@@ -2,11 +2,11 @@ module.exports = {
 
     ActionTypes: {
         'CHANGE_APP_STATE': 'CHANGE_APP_STATE',
-        'QUESTION_FIRE': 'QUESTION_FIRE',                   // { text: 'question', snippetId: uid }
-        'QUESTION_RECEIVED': 'QUESTION_RECEIVED',           // { text: 'question', snippetId: uid, authorUid:uid }
-        'QUESTION_SELECTED': 'QUESTION_SELECTED',           // { text: 'question', snippetId: uid }
-        'ANSWER_FIRE':'ANSWER_FIRE',                        // { question:'', answer: 'answer', authorUid: uid, snippedId: uid}
-        'ANSWER_RECEIVED':'ANSWER_RECEIVED',                // { question:'', answer: 'answer', authorUid: uid }
+        'QUESTION_FIRE': 'QUESTION_FIRE',                    // { text: 'question', snippetId: uid, authorUid:uid }
+        'QUESTION_RECEIVED': 'QUESTION_RECEIVED',            // { text: 'question', snippetId: uid, authorUid:uid }
+        'QUESTION_SELECTED': 'QUESTION_SELECTED',            // { text: 'question', snippetId: uid }
+        'ANSWER_FIRE': 'ANSWER_FIRE',                        // { question:'', answer: 'answer', authorUid: uid, snippedId: uid}
+        'ANSWER_RECEIVED': 'ANSWER_RECEIVED',                // { question:'', answer: 'answer', authorUid: uid }
         'GET_SNIPPET_DIFF': 'GET_SNIPPET_DIFF',
         'UPDATE_HIGHLIGHT_TEXT': 'UPDATE_HIGHLIGHT_TEXT',
         'RESET_HIGHLIGHT': 'RESET_HIGHLIGHT',
