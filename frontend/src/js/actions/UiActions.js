@@ -24,6 +24,7 @@ module.exports = {
         PubnubUtils.subscribeLangChannel(lang);
     },
 
+
     setSecondaryLanguage: function (lang) {
         Dispatcher.handleViewAction({
             type: AT.SET_SECONDARY_LANGUAGE,

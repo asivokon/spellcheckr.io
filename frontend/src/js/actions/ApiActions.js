@@ -34,9 +34,9 @@ module.exports = {
 
     questionSelected: function (question) {
         Dispatcher.handleViewAction({
-            type: AT.ANSWER_RECEIVED,
+            type: AT.QUESTION_SELECTED,
             question: question.text,
-            questionId: question.snippetId
+            questionId: question.id
         });
     }
 

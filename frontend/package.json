@@ -43,6 +43,7 @@
   },
   "scripts": {
     "start": "gulp",
+    "watch": "gulp watch",
     "build": "gulp build",
     "test": "jest"
   },

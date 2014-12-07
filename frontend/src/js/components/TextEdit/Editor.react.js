@@ -44,12 +44,16 @@ module.exports = React.createClass({
     },
 
     render: function () {
+        //debugger;
+        var appState = this._getAppState(),
+            value = appState !== Constants.AppState.QUESTION_STATE ?
+                this.state.questionText : this.state.text;
+
         return (
             <Textarea
                 placeholder={this.getPlaceholderText()}
                 onChange={this._textChange}
-                value={this.state.text} />
-
+                value={value}></textarea>
         );
     },
 
@@ -57,18 +61,20 @@ module.exports = React.createClass({
         this.setState(getStateFromStores());
     },
 
+    _getAppState: function () {
+        return AppStore.getAppState();
+    },
+
     _textChange: function (event) {
-        var appState = AppStore.getAppState();
         var text = event.target.value;
+        var appState = this._getAppState();
         if (appState == Constants.AppState.QUESTION_STATE) {
             EditActions.fireQuestion(text, this.state.snippetId);
-        }
-        else {
+        } else {
             if (this.state.questionId) {
                 ApiActions.fireAnswer(this.state.questionText, text,
                     this.state.questionId, this.state.snippetId);
-            }
-            else {
+            } else {
                 console.log("No question selected!");
                 this.setState({text: text});
             }

@@ -4,6 +4,7 @@ var EventEmitter = require('events').EventEmitter;
 var assign = require('object-assign');
 var Pubnub = require('../utils/PubnubUtils');
 var Firebase = require('../utils/FireBaseUtils');
+var EditorStore = require('../stores/EditorStore');
 
 var AT = Constants.ActionTypes,
     CHANGE_EVENT = Constants.Events.CHANGE;
@@ -53,7 +54,9 @@ AnswerStore.dispatchToken = Dispatcher.register(function (payload) {
             };
             Firebase.putResponse(message.snippetId, message);
             Pubnub.publishAnswer(action.snippetId, message);
-            AnswersStore.emitChange();
+            //update textarea text...
+            EditorStore.setQuestion(action.snippetId, action.answer);
+            AnswerStore.emitChange();
             console.log("Answer send to: ", action.snippetId);
             break;
 

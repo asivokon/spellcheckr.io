@@ -50,7 +50,6 @@ var QuestionsStore = assign({}, EventEmitter.prototype, {
         return _lang;
     }
 
-
 });
 
 QuestionsStore.dispatchToken = Dispatcher.register(function (payload) {
