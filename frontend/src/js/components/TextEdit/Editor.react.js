@@ -44,7 +44,6 @@ module.exports = React.createClass({
     },
 
     render: function () {
-        //debugger;
         var appState = this._getAppState(),
             value = appState !== Constants.AppState.QUESTION_STATE ?
                 this.state.questionText : this.state.text;

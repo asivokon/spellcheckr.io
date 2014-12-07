@@ -9,7 +9,6 @@ var ApiActions = require('../actions/ApiActions');
 var AT = Constants.ActionTypes,
     CHANGE_EVENT = Constants.Events.CHANGE;
 
-
 var SuggestBotStore = assign({}, EventEmitter.prototype, {
     emitChange: function () {
         this.emit(CHANGE_EVENT);
@@ -23,9 +22,11 @@ var SuggestBotStore = assign({}, EventEmitter.prototype, {
         this.removeListener(CHANGE_EVENT, callback);
     }
 });
+
 SuggestBotStore.dispatchToken = Dispatcher.register(function (payload) {
     var action = payload.action;
     switch (action.type) {
+
         case AT.QUESTION_FIRE:
             LanguageToolUtils.sendThrottled(action.text, null, function (response) {
                 ApiActions.fireAnswer(action.text, response, action.snippetId, "Smarty R2D2");
@@ -34,4 +35,5 @@ SuggestBotStore.dispatchToken = Dispatcher.register(function (payload) {
             break;
     }
 });
+
 module.exports = SuggestBotStore;
