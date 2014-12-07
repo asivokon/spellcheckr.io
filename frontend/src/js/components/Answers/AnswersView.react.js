@@ -30,7 +30,6 @@ module.exports = React.createClass({
             'collapsed': state
         });
 
-
         var answers = this.state.answers;
         if (answers && Object.keys(answers).length < 1) {
             return <div className="no-answers-message">You don't have answers for the text.</div>;

@@ -33,8 +33,8 @@ module.exports = React.createClass({
 
         return (
             <div className="spell-checkr-app">
+                <button onClick={this.changeView}>TEST VIEW CHANGE</button>
                 <div className="app-wrapper">
-                    <button onClick={this.changeView}>TEST VIEW CHANGE</button>
                     <QuestionsView state={appState} />
                     <TextEditView state={appState} />
                     <AnswersView state={appState} />
