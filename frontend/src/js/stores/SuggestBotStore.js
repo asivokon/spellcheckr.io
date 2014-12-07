@@ -27,7 +27,7 @@ SuggestBotStore.dispatchToken = Dispatcher.register(function (payload) {
     var action = payload.action;
     switch (action.type) {
         case AT.UPDATE_TEXT:
-            LanguageToolUtils.checkText(action.text, null, function(response){
+            LanguageToolUtils.sendThrottled(action.text, null, function(response){
                 EditorStore.emitChange();
             });
             break;

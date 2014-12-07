@@ -2,8 +2,23 @@ var https = require('https');
 var XmlParser = require('xml2js');
 var Settings = require('../utils/Settings');
 
+var timer = null;
+function throttle(f, delay) {
+    return function () {
+        var context = this, args = arguments;
+        clearTimeout(timer);
+        console.log("reject call");
+        timer = window.setTimeout(function () {
+                console.log("go with call");
+                f.apply(context, args);
+            },
+            delay || 500);
+    };
+};
+
 module.exports = {
-    checkText: function (text, lang, callback) {
+    sendRequest: function (text, lang, callback) {
+        console.log("sending to lang bot: ", text);
         var language = lang ? lang : 'en-US';
         var request = https.request({
                 hostname: Settings.languageTools.checkUrl,
@@ -43,6 +58,10 @@ module.exports = {
                 });
             });
         request.end('language=' + language + '&text=' + text);
+    },
+
+    sendThrottled: function (text, lang, callback) {
+        throttle(this.sendRequest, 1000)(text, lang, callback);
     }
 
 };
