@@ -1,0 +1,48 @@
+doctype html
+html(lang='en')
+
+    head
+        meta(charset='utf-8')
+        title= name
+        link(href='//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css', rel='stylesheet')
+        link(href='app.css', rel='stylesheet')
+
+    body
+        div.navbar
+            //div.view
+                span.logo spellchec<strong>kr</strong>.<i>io</i>
+
+        div.switcher
+            div.view
+                ul.switcher-menu
+                    li.switcher-item
+                        a.switcher-link.active(href) <strong>My </strong>questions
+                    li.switcher-item
+                        a.switcher-link(href) <strong>My </strong>suggestions
+
+        div.view
+            div.workspace
+                div.workspace-container
+                    div.column
+                        ul.listing
+                            li.listing-item
+                                div.listing-text I'm single.
+                                div.listing-menu
+                                    span by Bot
+
+                            li.listing-item.typing
+                                div.listing-text I am not marr
+                                div.listing-menu
+                                    span Somebody typing...
+
+                            li.listing-item
+                                div.listing-text No woman, no cry.
+                                div.listing-menu
+                                    span by Bob Marey
+
+                            div.busy
+                                div.spinner.pulse
+
+                    div.column
+                    div.column
+                        textarea(placeholder="Ask your question...")
