@@ -18,7 +18,7 @@ Suppose Master Yoda used our service before he made this speech!
 This is what he'd be likely to get:
 
 “Anger, fear, aggression; they are the dark side of the Force.
-They flow easily an are quick to join you in a fight. Once you start down the dark path,
+They flow easily and are quick to join you in a fight. Once you start down the dark path,
 it will forever dominate your destiny, it will consume you, as it did Obi-Wan’s apprentice.”
 
 Not so funny anymore huh?
