@@ -3,7 +3,8 @@ var Settings = require('./Settings');
 
 var FireBaseRoutes = {
     messages: function (messageId) {
-        return new FireBase(Settings.fireBaseUrl).child("messages/" + messageId);
+        child = messageId? ("messages/" + messageId) : "messages";
+        return new FireBase(Settings.fireBaseUrl).child(child);
     },
 
     responses: function (messageId) {
@@ -12,9 +13,9 @@ var FireBaseRoutes = {
 };
 
 module.exports = {
-    putMessage: function (messageId, text) {
+    putMessage: function (messageId, text, lang) {
         FireBaseRoutes.messages(messageId).
-            set({message: text, date: new Date().getTime()});
+            set({message: text, lang: lang, date: new Date().getTime()});
     },
 
     putResponse: function (messageId, text) {
@@ -24,6 +25,15 @@ module.exports = {
 
     getMessage: function (messageId, callback) {
         FireBaseRoutes.messages(messageId).
+            on('value', function (snapshot) {
+                callback(snapshot.val());
+            });
+    },
+
+    getMessagesByLang: function (lang, callback) {
+        // TODO: indexOn lang
+        FireBaseRoutes.messages().
+            equalTo(lang).
             on('value', function (snapshot) {
                 callback(snapshot.val());
             });

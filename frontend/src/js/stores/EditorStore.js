@@ -68,9 +68,8 @@ EditorStore.dispatchToken = Dispatcher.register(function (payload) {
             break;
 
         case AT.QUESTION_FIRE:
-            FireBaseUtil.putMessage(_snippetId, action.text);
+            FireBaseUtil.putMessage(_snippetId, action.text, action.lang);
             EditorStore.emitChange();
-            console.log('question fire', action);
             break;
 
         case AT.UPDATE_HIGHLIGHT_TEXT:
