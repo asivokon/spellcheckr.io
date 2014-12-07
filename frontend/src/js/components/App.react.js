@@ -4,9 +4,9 @@ var AppStore = require('../stores/AppStore');
 var AppActions = require('../actions/AppActions');
 
 //app views
-var QuestionsView = require('./Questions/QuestionsView.react');
-var AnswersView = require('./Answers/AnswersView.react');
-var TextEditView = require('./TextEdit/TextEditView.react');
+var Switcher = require('./Switcher.react');
+var Workspace = require('./Workspace.react');
+
 
 function getStateFromStores() {
     return {
@@ -31,27 +31,20 @@ module.exports = React.createClass({
     render: function () {
         var appState = this.state.appState;
 
+        //<div className="view"><span className="logo">spellchec<strong>kr</strong>.<i>io</i></span></div>
+
         return (
-            <div className="spell-checkr-app">
-                <button onClick={this.changeView}>TEST VIEW CHANGE</button>
-                <div className="app-wrapper">
-                    <QuestionsView state={appState} />
-                    <TextEditView state={appState} />
-                    <AnswersView state={appState} />
-                </div>
+            <div>
+                <div className="navbar"></div>
+                <Switcher />
+                <Workspace />
             </div>
+
         );
     },
 
     _onChange: function () {
         this.setState(getStateFromStores());
-    },
-
-    changeView: function () {
-        //we have only two states of the app, so we change boolean and convert it to number
-        var nextState = +!this.state.appState;
-        AppActions.changeViewState(nextState);
-        console.log(nextState);
     }
 
 });

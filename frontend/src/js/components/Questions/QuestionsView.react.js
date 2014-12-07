@@ -2,7 +2,6 @@ var React = require('react/addons');
 var cs = React.addons.classSet;
 var QuestionStore = require('../../stores/QuestionStore');
 var Question = require('./Question.react');
-var Toolbar = require('../Toolbar.react')
 
 function getStateFromStores() {
     return {
@@ -26,12 +25,9 @@ module.exports = React.createClass({
 
     render: function () {
         var state = this.props.state;
-        if (state) {
-            return <Toolbar />;
-        }
-
         var questions = this.state.questions;
         if (questions && Object.keys(questions).length < 1) {
+            //todo
             return <div className="no-answers-message">You don't have answers for the text.</div>;
         }
 
@@ -42,10 +38,9 @@ module.exports = React.createClass({
         });
 
         return (
-            <div className="questions-view">
-                <h4>Questions View</h4>
+            <ul className="listing">
                 {list}
-            </div>
+            </ul>
         );
     },
 

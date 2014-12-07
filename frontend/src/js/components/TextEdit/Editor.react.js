@@ -35,20 +35,13 @@ module.exports = React.createClass({
     },
 
     render: function () {
-        var mainClass = cs({
-            'content-editor-wrapper': true,
-            'highlight': this.state.isHighlight
-        });
 
         return (
-            <div className={mainClass}>
-                <h5>Request</h5>
-                <textarea
-                    className="content-editor-textarea"
-                    onChange={this._textChange}
-                    value={this.state.text}></textarea>
-                <div className="content-editor-display" dangerouslySetInnerHTML={{__html: this.state.text}}></div>
-            </div>
+            <textarea
+                placeholder="Ask your question..."
+                onChange={this._textChange}
+                value={this.state.text}></textarea>
+
         );
     },
 

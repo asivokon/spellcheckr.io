@@ -10,9 +10,10 @@ module.exports = React.createClass({
     render: function () {
         var answer = this.props.answer;
         return (
-            <div className="answer-item">
-                <span className="answer-item-text">{answer.text}</span>
-            </div>
+            <li className="listing-item">
+                <div className="listing-text">{answer.text}</div>
+                <div className="listing-menu"><span>by Bot</span></div>
+            </li>
         );
     }
 

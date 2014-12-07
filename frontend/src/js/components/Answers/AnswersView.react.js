@@ -2,7 +2,6 @@ var React = require('react/addons');
 var cs = React.addons.classSet;
 var AnswersStore = require('../../stores/AnswersStore');
 var Answer = require('./Answer.react.js');
-var Toolbar = require('../Toolbar.react')
 
 
 function getStateFromStores() {
@@ -27,9 +26,6 @@ module.exports = React.createClass({
 
     render: function () {
         var state = this.props.state;
-        if (!state) {
-            return <Toolbar />;
-        }
 
         var answers = this.state.answers;
         if (answers && Object.keys(answers).length < 1) {
@@ -43,10 +39,9 @@ module.exports = React.createClass({
         });
 
         return (
-            <div className='answers-view'>
-                <h4>Answers View</h4>
+            <ul className="listing">
                 {list}
-            </div>
+            </ul>
         );
     },
 
