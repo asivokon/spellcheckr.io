@@ -48,14 +48,15 @@ module.exports = React.createClass({
     render: function () {
         var minLen = Settings.mashable.languageDetect.minLength;
         var diff = this.state.text.trim().length - minLen;
-        var diffComp;
-
-        if (diff < 0) {
-            diffComp = <p>Detection need {Math.abs(diff)} more chars</p>
-        } else {
-            diffComp = <p>Detected language: {this.state.detectedLanguage}</p>
-        }
+        var detectMsg = '';
+        var lang = this.state.detectedLanguage;
         
+        if (lang) {
+            detectMsg = <p>Detected language: {lang}</p>
+        } else if (diff < 0) {
+            detectMsg = <p>Detection need {Math.abs(diff)} more chars</p>
+        }
+
         var appState = this._getAppState(),
             value = appState !== Constants.AppState.QUESTION_STATE ?
                 this.state.questionText : this.state.text;
@@ -66,7 +67,7 @@ module.exports = React.createClass({
                     placeholder={this.getPlaceholderText()}
                     onChange={this._textChange}
                     value={value} />
-                {diffComp}
+                {detectMsg}
             </div>
         );
     },
