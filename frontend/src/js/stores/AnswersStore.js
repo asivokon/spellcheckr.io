@@ -49,20 +49,6 @@ AnswerStore.dispatchToken = Dispatcher.register(function (payload) {
     var action = payload.action;
 
     switch (action.type) {
-        case AT.ANSWER_FIRE:
-            var message = {
-                question: action.question,
-                answer: action.answer,
-                authorUid: action.authorUid,
-                snippetId: action.snippetId
-            };
-            Firebase.putResponse(message.snippetId, message);
-            Pubnub.publishAnswer(action.snippetId, message);
-            //update textarea text...
-            EditorStore.setQuestion(action.snippetId, action.answer);
-            AnswerStore.emitChange();
-            console.log("Answer send to: ", action.snippetId);
-            break;
 
         default:
         // do nothing
