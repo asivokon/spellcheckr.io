@@ -1,12 +1,13 @@
 var React = require('react');
-var LangChannelStore = require('../stores/LangChannelStore');
+var AppStore = require('../stores/AppStore');
+var QuestionsStore = require('../stores/QuestionStore');
 var Snippet = require('./Snippet.react');
 var AnswerForm = require('./AnswerForm.react');
 
 function getStateFromStores() {
     return {
-        snippets: LangChannelStore.getSnippets(),
-        lang: LangChannelStore.getChannelLang()
+        snippets: QuestionsStore.getQuestions(),
+        lang: AppStore.getPrimaryLang()
     }
 }
 

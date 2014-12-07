@@ -1,14 +1,14 @@
 var Dispatcher = require('../dispatcher/Dispatcher');
 var Constants = require('../constants/Constants');
 var PubnubUtils = require('../utils/PubnubUtils');
-var LangChannelStore = require('../stores/LangChannelStore');
+var AppStore = require('../stores/AppStore');
 
 var AT = Constants.ActionTypes;
 
 module.exports = {
 
     fireQuestion: function (text, snippetId) {
-        var lang = LangChannelStore.getChannelLang();
+        var lang = AppStore.getPrimaryLang();
         Dispatcher.handleViewAction({
             type: AT.QUESTION_FIRE,
             text: text,

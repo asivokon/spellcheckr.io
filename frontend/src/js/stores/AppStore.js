@@ -10,7 +10,8 @@ var AT = Constants.ActionTypes,
 *  0 - Question state (default)
 *  1 - Answer state
 * */
-var _appState = Constants.AppState.QUESTION_STATE;
+var _appState = Constants.AppState.QUESTION_STATE,
+    _primaryLang = 'eng'; // TODO: this is mocked
 
 var AppStore = assign({}, EventEmitter.prototype, {
 
@@ -28,6 +29,14 @@ var AppStore = assign({}, EventEmitter.prototype, {
 
     getAppState: function () {
         return _appState;
+    },
+
+    getPrimaryLang: function () {
+        return _primaryLang;
+    },
+
+    setPrimaryLang: function (lang) {
+        _primaryLang = lang;
     }
 
 });
@@ -39,6 +48,11 @@ AppStore.dispatchToken = Dispatcher.register(function (payload) {
 
         case AT.CHANGE_APP_STATE:
             _appState = action.state;
+            AppStore.emitChange();
+            break;
+
+        case AT.SET_PRIMARY_LANGUAGE:
+            AppStore.setPrimaryLang(action.lang);
             AppStore.emitChange();
             break;
 
