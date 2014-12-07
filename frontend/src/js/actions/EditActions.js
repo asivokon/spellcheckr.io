@@ -8,12 +8,14 @@ var AT = Constants.ActionTypes;
 module.exports = {
 
     fireQuestion: function (text, snippetId) {
+        var lang = LangChannelStore.getChannelLang();
         Dispatcher.handleViewAction({
             type: AT.QUESTION_FIRE,
             text: text,
-            snippetId: snippetId
+            snippetId: snippetId,
+            lang: lang
         });
-        PubnubUtils.publish(text, LangChannelStore.getChannelLang(), snippetId);
+        PubnubUtils.publish(text, lang, snippetId);
     },
 
     updateHighLightText: function (text) {
