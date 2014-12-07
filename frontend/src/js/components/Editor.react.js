@@ -2,6 +2,8 @@ var React = require('react');
 var EditActions = require('../actions/EditActions');
 var EditorStore = require('../stores/EditorStore');
 var ContentEditable = require('./ContentEditable.react');
+require('react/addons');
+var cs = React.addons.classSet;
 
 function getStateFromStores() {
     return {
@@ -30,10 +32,10 @@ module.exports = React.createClass({
     },
 
     render: function () {
-        var mainClass = {
+        var mainClass = cs({
             'content-editor-wrapper': true,
             'highlight': this.state.isHighlight
-        };
+        });
 
         return (
             <div className={mainClass}>
