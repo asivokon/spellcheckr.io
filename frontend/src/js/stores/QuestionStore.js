@@ -18,6 +18,8 @@ var _questions = [
     }
 ];
 
+var _lang = null;
+
 var QuestionsStore = assign({}, EventEmitter.prototype, {
 
     emitChange: function () {
@@ -34,7 +36,27 @@ var QuestionsStore = assign({}, EventEmitter.prototype, {
 
     getQuestions: function () {
         return _questions;
+    },
+
+    updateOrCreateQuestion: function (id, text) {
+        for (var i = 0; i < _questions.length; i++) {
+            if (_questions[i].id == id) {
+                _questions[i].text = text;
+                return;
+            }
+        }
+
+        _questions.push({ id: id, text: text });
+    },
+
+    setQuestionsLanguage: function (lang) {
+        _lang = lang;
+    },
+
+    getQuestionsLanguage: function () {
+        return _lang;
     }
+
 
 });
 
@@ -43,7 +65,17 @@ QuestionsStore.dispatchToken = Dispatcher.register(function (payload) {
 
     switch (action.type) {
 
-        //TODO: update questions
+        case AT.QUESTION_RECEIVED:
+            if (action.snippetId != EditorStore.getSnippetId()) {
+                QuestionsStore.updateOrCreateQuestion(action.snippetId, action.text);
+                QuestionsStore.emitChange();
+            }
+            break;
+
+        case AT.SET_PRIMARY_LANGUAGE:
+            QuestionsStore.setQuestionsLanguage(action.lang);
+            QuestionsStore.emitChange();
+            break;
 
         default:
         // do nothing

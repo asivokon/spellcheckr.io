@@ -42,40 +42,12 @@ var LangChannelStore = assign({}, EventEmitter.prototype, {
     setChannelLag: function (lang) {
         _lang = lang;
     },
-
-    updateOrCreateSnipet: function (snippetId, text) {
-        for (var i = 0; i < _snippets.length; i++) {
-            if (_snippets[i].snippetId == snippetId) {
-                _snippets[i].text = text;
-                return;
-            }
-        }
-
-        _snippets.push({
-            snippetId: snippetId,
-            text: text
-        });
-    }
-
 });
 
 LangChannelStore.dispatchToken = Dispatcher.register(function (payload) {
     var action = payload.action;
 
     switch (action.type) {
-
-        case AT.QUESTION_RECEIVED:
-            if (action.snippetId != EditorStore.getSnippetId()) {
-                LangChannelStore.updateOrCreateSnipet(action.snippetId, action.text);
-                LangChannelStore.emitChange();
-            }
-            break;
-
-        case AT.SET_PRIMARY_LANGUAGE:
-            LangChannelStore.setChannelLag(action.lang);
-            LangChannelStore.emitChange();
-            break;
-
         default:
         // do nothing
     }
