@@ -49,6 +49,6 @@ module.exports = {
 
     sendThrottled: AppUtils.throttle(function (text, lang, callback) {
         this.sendRequest(text, lang, callback);
-      }, 1000)
+      }, 1500)
 
 };
