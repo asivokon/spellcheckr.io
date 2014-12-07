@@ -37,6 +37,10 @@ var AnswerStore = assign({}, EventEmitter.prototype, {
 
     getAnswers: function () {
         return _answers;
+    },
+
+    setAnswers: function (answers) {
+        _answers = answers;
     }
 
 });

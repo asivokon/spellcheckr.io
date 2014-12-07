@@ -55,10 +55,22 @@ module.exports = {
             });
     },
 
-    getResponses: function (messageId, callback, sender) {
+    subscribeToAnswers: function (messageId, callback, sender) {
         FireBaseRoutes.responses(messageId).
             on('value', function (snapshot) {
-                callback.call(sender, snapshot.val());
+                var val = snapshot.val();
+                var result = [];
+                //console.log("Got answers from Firebase:", val);
+                for (var id in val) {
+                    if (val.hasOwnProperty(id)){
+                        result.push({
+                            id: id,
+                            text: val[id].message.answer
+                        })
+                    }
+                }
+
+                callback.call(sender, result);
             });
     }
 };

@@ -2,7 +2,8 @@ var Dispatcher = require('../dispatcher/Dispatcher');
 var Constants = require('../constants/Constants');
 var PubnubUtils = require('../utils/PubnubUtils');
 var ApiActions = require('./ApiActions');
-
+var FireBaseUtils = require('../utils/FireBaseUtils');
+var AnswersStore = require('../stores/AnswersStore');
 
 var AT = Constants.ActionTypes;
 
@@ -14,6 +15,11 @@ module.exports = {
             type: AT.SET_SNIPPET_ID,
             snippetId: snippetId
         });
+
+        FireBaseUtils.subscribeToAnswers(snippetId, function (answers) {
+            AnswersStore.setAnswers(answers);
+            AnswersStore.emitChange();
+        }, this);
     },
 
     setPrimaryLanguage: function (lang) {
