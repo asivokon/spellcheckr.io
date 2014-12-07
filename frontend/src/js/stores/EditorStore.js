@@ -31,6 +31,10 @@ var EditorStore = assign({}, EventEmitter.prototype, {
         return _isHighLighted ? _highLightedText : _text;
     },
 
+    getHighLightedState: function () {
+        return _isHighLighted;
+    },
+
     setText: function (text) {
         _text = text;
         this.emitChange();

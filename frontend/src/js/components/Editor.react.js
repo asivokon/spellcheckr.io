@@ -6,6 +6,7 @@ var ContentEditable = require('./ContentEditable.react');
 function getStateFromStores() {
     return {
         text: EditorStore.getText(),
+        isHighlight: EditorStore.getHighLightedState(),
         snippetId: EditorStore.getSnippetId()
     }
 }
@@ -29,14 +30,19 @@ module.exports = React.createClass({
     },
 
     render: function () {
+        var mainClass = cs({
+            'content-editor-wrapper': true,
+            'highlight': this.state.isHighlight
+        });
+
         return (
-            <div className="content-editor-wrapper">
+            <div className={mainClass}>
                 <h5>Request</h5>
-                <ContentEditable
-                    className="content-editor"
-                    html={this.state.text}
+                <textarea
+                    className="content-editor-textarea"
                     onChange={this._textChange}
-                />
+                    value={this.state.text}></textarea>
+                <div className="content-editor-display" dangerouslySetInnerHTML={{__html: this.state.text}}></div>
             </div>
         );
     },

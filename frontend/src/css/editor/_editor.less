@@ -1,6 +1,6 @@
 .content-editor-wrapper {
-  width: 64%;
-  float:left;
+  width: 500px;
+  display: table-cell;
 }
 
 .content-editor {
@@ -18,6 +18,23 @@
 
 .snippet-item {
   background: #eee; margin: 10px 0; padding: 5px; cursor: pointer;
+.content-editor-textarea {
+  width: 450px;
+  height: 400px;
+  font-size: 19px;
+  outline: none;
+}
+
+.content-editor-display {
+  display: none;
+}
+
+.highlight .content-editor-textarea {
+  display: none;
+}
+
+.highlight .content-editor-display {
+  display: inline-block;
 }
 
 .text-error {
