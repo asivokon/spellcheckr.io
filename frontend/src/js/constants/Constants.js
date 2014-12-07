@@ -15,8 +15,8 @@ module.exports = {
     },
 
     AppState: {
-        'TEXT_EDIT_STATE': 0,
-        'QUESTIONS_LIST_STATE': 1
+        "QUESTION_STATE": 0,
+        "ANSWER_STATE": 1
     },
 
     Events: {

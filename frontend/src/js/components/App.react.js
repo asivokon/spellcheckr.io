@@ -48,9 +48,10 @@ module.exports = React.createClass({
     },
 
     changeView: function () {
-        //we have only two state of app, so we change boolean and convert it to numb
+        //we have only two states of the app, so we change boolean and convert it to number
         var nextState = +!this.state.appState;
         AppActions.changeViewState(nextState);
+        console.log(nextState);
     }
 
 });

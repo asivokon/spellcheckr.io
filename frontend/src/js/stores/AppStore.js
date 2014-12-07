@@ -7,10 +7,10 @@ var AT = Constants.ActionTypes,
     CHANGE_EVENT = Constants.Events.CHANGE;
 /*
 * App have 2 states:
-*  0 - Text edit state (default)
-*  1 - Answers view state
+*  0 - Question state (default)
+*  1 - Answer state
 * */
-var _appState = Constants.AppState.TEXT_EDIT_STATE;
+var _appState = Constants.AppState.QUESTION_STATE;
 
 var AppStore = assign({}, EventEmitter.prototype, {
 

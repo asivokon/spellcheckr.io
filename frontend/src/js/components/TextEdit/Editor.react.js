@@ -1,7 +1,10 @@
 var React = require('react/addons');
 var cs = React.addons.classSet;
+var Constants = require('../../constants/Constants');
 var EditActions = require('../../actions/EditActions');
+var ApiActions = require('../../actions/ApiActions');
 var EditorStore = require('../../stores/EditorStore');
+var AppStore = require('../../stores/AppStore');
 
 function getStateFromStores() {
     return {
@@ -52,7 +55,14 @@ module.exports = React.createClass({
     },
 
     _textChange: function (event) {
-        EditActions.fireQuestion(event.target.value, this.state.snippetId);
+        var appState = AppStore.getAppState();
+        if (appState == Constants.AppState.QUESTION_STATE) {
+            EditActions.fireQuestion(event.target.value, this.state.snippetId);
+        }
+        else {
+            // TODO we need author ID and question which we answer
+            ApiActions.fireAnswer(null, event.target.value, null, this.snippetId);
+        }
     }
 
 });
