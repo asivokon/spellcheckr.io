@@ -27,6 +27,7 @@ module.exports = {
         });
     },
 
+
     setSecondaryLanguage: function (lang) {
         Dispatcher.handleViewAction({
             type: AT.SET_SECONDARY_LANGUAGE,
