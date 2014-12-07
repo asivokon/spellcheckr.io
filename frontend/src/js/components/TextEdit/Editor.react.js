@@ -6,6 +6,7 @@ var ApiActions = require('../../actions/ApiActions');
 var EditorStore = require('../../stores/EditorStore');
 var AppStore = require('../../stores/AppStore');
 var Textarea = require('react-textarea-autosize');
+var Settings = require('../../utils/Settings');
 
 function getStateFromStores() {
     return {
@@ -45,6 +46,16 @@ module.exports = React.createClass({
     },
 
     render: function () {
+        var minLen = Settings.mashable.languageDetect.minLength;
+        var diff = this.state.text.trim().length - minLen;
+        var diffComp;
+
+        if (diff < 0) {
+            diffComp = <p>Detection need {Math.abs(diff)} more chars</p>
+        } else {
+            diffComp = <p>Detected language: {this.state.detectedLanguage}</p>
+        }
+        
         var appState = this._getAppState(),
             value = appState !== Constants.AppState.QUESTION_STATE ?
                 this.state.questionText : this.state.text;
@@ -55,7 +66,7 @@ module.exports = React.createClass({
                     placeholder={this.getPlaceholderText()}
                     onChange={this._textChange}
                     value={value} />
-                <p>Detected language: {this.state.detectedLanguage}</p>
+                {diffComp}
             </div>
         );
     },
