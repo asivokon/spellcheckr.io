@@ -21,11 +21,7 @@ module.exports = {
     publishQuestion: function (text, lang, snippetId) {
         Pubnub.publish({
             channel: 'lang-' + lang,
-            message: {text: text, lang: lang, snippetId: snippetId},
-            callback: function (e) {
-            },
-            error: function (e) {
-            }
+            message: {text: text, lang: lang, snippetId: snippetId}
         });
     },
 

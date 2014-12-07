@@ -1,6 +1,5 @@
 var Dispatcher = require('../dispatcher/Dispatcher');
 var Constants = require('../constants/Constants');
-var PubnubUtils = require('../utils/PubnubUtils');
 var AppStore = require('../stores/AppStore');
 
 var AT = Constants.ActionTypes;
@@ -15,7 +14,6 @@ module.exports = {
             snippetId: snippetId,
             lang: lang
         });
-        PubnubUtils.publishQuestion(text, lang, snippetId);
     },
 
     updateHighLightText: function (text) {
