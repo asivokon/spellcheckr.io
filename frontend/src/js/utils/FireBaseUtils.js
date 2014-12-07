@@ -1,5 +1,6 @@
 var FireBase = require('firebase');
 var Settings = require('./Settings');
+var _ = require('lodash');
 
 var FireBaseRoutes = {
     messages: function (messageId) {
@@ -7,8 +8,8 @@ var FireBaseRoutes = {
         return new FireBase(Settings.fireBaseUrl).child(child);
     },
 
-    responses: function (messageId) {
-        return new FireBase(Settings.fireBaseUrl).child("responses/" + messageId);
+    responses: function (messageId, answerId) {
+        return new FireBase(Settings.fireBaseUrl).child("responses/" + messageId + (answerId ? "/" + answerId : ""));
     }
 };
 
@@ -18,9 +19,9 @@ module.exports = {
             set({message: text, lang: lang, date: new Date().getTime(), author: author});
     },
 
-    putResponse: function (messageId, text) {
-        FireBaseRoutes.responses(messageId).
-            push({message: text, date: new Date().getTime()});
+    putResponse: function (message) {
+        FireBaseRoutes.responses(message.snippetId, message.authorUid).
+            set(message);
     },
 
     getMessage: function (messageId, callback) {
@@ -60,16 +61,9 @@ module.exports = {
             on('value', function (snapshot) {
                 var val = snapshot.val();
                 var result = [];
-                //console.log("Got answers from Firebase:", val);
-                for (var id in val) {
-                    if (val.hasOwnProperty(id)){
-                        result.push({
-                            id: id,
-                            text: val[id].message.answer
-                        })
-                    }
-                }
-
+                _.forOwn(val, function (author) {
+                    result.push(author);
+                });
                 callback.call(sender, result);
             });
     }

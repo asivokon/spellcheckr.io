@@ -11,8 +11,8 @@ module.exports = React.createClass({
         var answer = this.props.answer;
         return (
             <li className="listing-item">
-                <div className="listing-text">{answer.text}</div>
-                <div className="listing-menu"><span>{answer.author}</span></div>
+                <div className="listing-text">{answer.answer}</div>
+                <div className="listing-menu"><span>{answer.authorUid}</span></div>
             </li>
         );
     }

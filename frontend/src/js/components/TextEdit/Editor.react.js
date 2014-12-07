@@ -89,7 +89,6 @@ module.exports = React.createClass({
                 ApiActions.fireAnswer(this.state.questionText, text,
                     this.state.questionId, this.state.snippetId);
             } else {
-                console.log("No question selected!");
                 this.setState({text: text});
             }
         }
