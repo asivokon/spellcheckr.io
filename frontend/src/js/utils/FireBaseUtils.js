@@ -33,9 +33,24 @@ module.exports = {
     getMessagesByLang: function (lang, callback) {
         // TODO: indexOn lang
         FireBaseRoutes.messages().
-            equalTo(lang).
+            //equalTo(lang).            // TODO:
             on('value', function (snapshot) {
-                callback(snapshot.val());
+                var val = snapshot.val();
+                var messages = [];
+                for (var id in val) {
+                    if (val.hasOwnProperty(id)){
+                        var msg = val[id];
+                        if (msg.lang == lang) {
+                            messages.push({
+                                id: id,
+                                text: msg.message,
+                                lang: lang,
+                                date: msg.date});
+                        }
+                    }
+                }
+
+                callback(messages);
             });
     },
 

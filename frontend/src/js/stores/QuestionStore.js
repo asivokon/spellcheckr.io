@@ -8,18 +8,8 @@ var AT = Constants.ActionTypes,
     CHANGE_EVENT = Constants.Events.CHANGE;
 
 //test mock for answers
-var _questions = [
-    {
-        text: 'question 1, lala lalal lalalla',
-        id: 1
-    },
-    {
-        text: 'question 2, lol lol o lo alala',
-        id: 2
-    }
-];
-
-var _lang = null;
+var _questions = [], // {text, id}
+    lang = null;
 
 var QuestionsStore = assign({}, EventEmitter.prototype, {
 
@@ -40,14 +30,14 @@ var QuestionsStore = assign({}, EventEmitter.prototype, {
     },
 
     updateOrCreateQuestion: function (id, text) {
-        for (var i = 0; i < _questions.length; i++) {
-            if (_questions[i].id == id) {
-                _questions[i].text = text;
-                return;
-            }
+        var filtered = _questions.filter(function (item) {
+            return item.id == id;
+        });
+        if (filtered.length > 0) {
+            filtered[0].text = text;
+        } else {
+            _questions.splice(0, 0, {id: id, text: text});
         }
-
-        _questions.push({ id: id, text: text });
     },
 
     setQuestionsLanguage: function (lang) {

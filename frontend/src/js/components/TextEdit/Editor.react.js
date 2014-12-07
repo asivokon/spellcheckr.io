@@ -5,6 +5,7 @@ var EditActions = require('../../actions/EditActions');
 var ApiActions = require('../../actions/ApiActions');
 var EditorStore = require('../../stores/EditorStore');
 var AppStore = require('../../stores/AppStore');
+var Textarea = require('react-textarea-autosize');
 
 function getStateFromStores() {
     return {
@@ -49,7 +50,7 @@ module.exports = React.createClass({
                 this.state.questionText : this.state.text;
 
         return (
-            <textarea
+            <Textarea
                 placeholder={this.getPlaceholderText()}
                 onChange={this._textChange}
                 value={value}></textarea>
