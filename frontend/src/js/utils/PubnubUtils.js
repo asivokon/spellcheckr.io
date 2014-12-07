@@ -23,13 +23,17 @@ module.exports = {
         });
     },
 
-    subscribeLangChannel: function (lang) {
+    subscribeToChannel: function (channel) {
         // TODO: unsubscribe
         Pubnub.subscribe({
-            channel: 'lang-' + lang,
+            channel: channel,
             callback: function (m) {
-                ApiActions.questionReceived(lang, m.snippetId, m.text);
+                ApiActions.questionReceived(m.snippetId, m.text);
             }
         });
+    },
+
+    subscribeLangChannel: function (lang) {
+        this.subscribeToChannel('lang-' + lang);
     }
 };

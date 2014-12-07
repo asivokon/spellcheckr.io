@@ -9,7 +9,7 @@ module.exports = {
 
     fireQuestion: function (text, snippetId) {
         Dispatcher.handleViewAction({
-            type: AT.QUESTION_FIRED,
+            type: AT.QUESTION_FIRE,
             text: text,
             snippetId: snippetId
         });

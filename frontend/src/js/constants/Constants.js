@@ -1,8 +1,10 @@
 module.exports = {
 
     ActionTypes: {
-        'QUESTION_FIRED': 'QUESTION_FIRED',                 // {text: 'question', snippetId: uid}
-        'QUESTION_RECEIVED': 'QUESTION_RECEIVED',           // {lang: 'ukr', text: 'question', snippetId: uid }
+        'QUESTION_FIRE': 'QUESTION_FIRE',                   // { text: 'question', snippetId: uid }
+        'QUESTION_RECEIVED': 'QUESTION_RECEIVED',           // { text: 'question', snippetId: uid }
+        'ANSWER_FIRE':'ANSWER_FIRE',                        // { snippedId: uid, text: 'answer' }
+        'ANSWER_RECEIVED':'ANSWER_RECEIVED',                // { text: 'answer' }
         'GET_SNIPPET_DIFF': 'GET_SNIPPET_DIFF',
         'UPDATE_HIGHLIGHT_TEXT': 'UPDATE_HIGHLIGHT_TEXT',
         'RESET_HIGHLIGHT': 'RESET_HIGHLIGHT',

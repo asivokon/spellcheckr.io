@@ -26,7 +26,7 @@ var SuggestBotStore = assign({}, EventEmitter.prototype, {
 SuggestBotStore.dispatchToken = Dispatcher.register(function (payload) {
     var action = payload.action;
     switch (action.type) {
-        case AT.QUESTION_FIRED:
+        case AT.QUESTION_FIRE:
             LanguageToolUtils.checkText(action.text, null, function(response){
                 EditorStore.emitChange();
             });
