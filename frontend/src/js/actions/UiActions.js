@@ -1,6 +1,7 @@
 var Dispatcher = require('../dispatcher/Dispatcher');
 var Constants = require('../constants/Constants');
 var PubnubUtils = require('../utils/PubnubUtils');
+var FireBaseUtils = require('../utils/FireBaseUtils');
 
 
 var AT = Constants.ActionTypes;
@@ -21,6 +22,9 @@ module.exports = {
             lang: lang
         });
         PubnubUtils.subscribeLangChannel(lang);
+        FireBaseUtils.getMessagesByLang(lang, function () {
+            // store
+        });
     },
 
     setSecondaryLanguage: function (lang) {
