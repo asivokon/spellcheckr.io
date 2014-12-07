@@ -8,11 +8,11 @@ module.exports = {
     sendRequest: function (text, lang, callback) {
         var language = lang ? lang : 'en-US';
         var request = https.request({
-                hostname: Settings.languageTools.checkUrl,
+                hostname: Settings.mashable.languageTools.checkUrl,
                 path: '/',
                 method: 'POST',
                 headers: {
-                    'X-Mashape-Key': Settings.languageTools.key,
+                    'X-Mashape-Key': Settings.mashable.key,
                     'Content-Type': 'application/x-www-form-urlencoded'
                 }
             },
@@ -44,7 +44,7 @@ module.exports = {
                     });
                 });
             });
-        request.end('language=' + language + '&text=' + text);
+        request.end('language=' + language + '&text=' + encodeURIComponent(text));
     },
 
     sendThrottled: AppUtils.throttle(function (text, lang, callback) {

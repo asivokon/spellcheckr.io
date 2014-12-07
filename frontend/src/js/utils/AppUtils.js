@@ -14,15 +14,15 @@ module.exports = {
     },
 
     throttle: function (f, delay) {
-      var timer = null;
-      return function () {
-        var context = this, args = arguments;
-        clearTimeout(timer);
-        timer = window.setTimeout(function () {
-          f.apply(context, args);
-        },
-        delay || 500);
-      }
+        var timer = null, tries = 0;
+        return function () {
+            var context = this, args = arguments;
+            clearTimeout(timer);
+            timer = window.setTimeout(function () {
+                    f.apply(context, args);
+                    tries += 1;
+                },
+                delay || 500);
+        }
     }
-
 };
