@@ -28,7 +28,7 @@ module.exports = React.createClass({
         var questions = this.state.questions;
         if (questions && Object.keys(questions).length < 1) {
             //todo
-            return <div className="no-answers-message">You don't have answers for the text.</div>;
+            return <div className="no-answers-message">You don't have questions.</div>;
         }
 
         var list = questions.map(function (q) {

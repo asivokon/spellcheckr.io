@@ -1,5 +1,6 @@
 var React = require('react/addons');
 var ApiActions = require('../actions/ApiActions');
+var AppStore = require('../stores/AppStore');
 
 module.exports = React.createClass({
     propTypes: {
@@ -23,8 +24,11 @@ module.exports = React.createClass({
 
     _onKeyDown: function (event) {
         if (event.keyCode == 13) {
-            // TODO: generate author UID
-            ApiActions.fireAnswer(this.props.question, this.state.text, this.props.snippetId, 1)
+            ApiActions.fireAnswer(
+                this.props.question,
+                this.state.text,
+                this.props.snippetId,
+                AppStore.getUserName());
         }
     },
 

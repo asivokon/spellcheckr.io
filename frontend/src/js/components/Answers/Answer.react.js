@@ -12,7 +12,7 @@ module.exports = React.createClass({
         return (
             <li className="listing-item">
                 <div className="listing-text">{answer.text}</div>
-                <div className="listing-menu"><span>by Bot</span></div>
+                <div className="listing-menu"><span>{answer.author}</span></div>
             </li>
         );
     }

@@ -122,7 +122,6 @@ EditorStore.dispatchToken = Dispatcher.register(function (payload) {
             FireBaseUtils.putResponse(message.snippetId, message);
             PubNub.publishAnswer(action.snippetId, message);
             EditorStore.emitChange();
-            console.log("Answer send to: ", action.snippetId);
             break;
 
         case AT.QUESTION_SELECTED:

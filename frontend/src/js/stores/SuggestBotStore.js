@@ -4,6 +4,7 @@ var EventEmitter = require('events').EventEmitter;
 var LanguageToolUtils = require('../utils/LanguageToolUtils');
 var EditorStore = require('./EditorStore');
 var assign = require('object-assign');
+var ApiActions = require('../actions/ApiActions');
 
 var AT = Constants.ActionTypes,
     CHANGE_EVENT = Constants.Events.CHANGE;
@@ -26,7 +27,8 @@ SuggestBotStore.dispatchToken = Dispatcher.register(function (payload) {
     var action = payload.action;
     switch (action.type) {
         case AT.QUESTION_FIRE:
-            LanguageToolUtils.sendThrottled(action.text, null, function(response){
+            LanguageToolUtils.sendThrottled(action.text, null, function (response) {
+                ApiActions.fireAnswer(action.text, response, action.snippetId, "Smarty R2D2");
                 EditorStore.emitChange();
             });
             break;

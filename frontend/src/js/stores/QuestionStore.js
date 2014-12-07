@@ -10,7 +10,7 @@ var AT = Constants.ActionTypes,
     CHANGE_EVENT = Constants.Events.CHANGE;
 
 //test mock for answers
-var _questions = [], // {text, id}
+var _questions = [], // {text, id, author}
     _lang = null;
 
 var QuestionsStore = assign({}, EventEmitter.prototype, {
@@ -31,14 +31,14 @@ var QuestionsStore = assign({}, EventEmitter.prototype, {
         return _questions;
     },
 
-    updateOrCreateQuestion: function (id, text) {
+    updateOrCreateQuestion: function (id, text, author) {
         var filtered = _questions.filter(function (item) {
             return item.id == id;
         });
         if (filtered.length > 0) {
             filtered[0].text = text;
         } else {
-            _questions.splice(0, 0, {id: id, text: text});
+            _questions.splice(0, 0, {id: id, text: text, author: author});
         }
     },
 
@@ -59,7 +59,7 @@ QuestionsStore.dispatchToken = Dispatcher.register(function (payload) {
 
         case AT.QUESTION_RECEIVED:
             if (action.snippetId != EditorStore.getSnippetId()) {
-                QuestionsStore.updateOrCreateQuestion(action.snippetId, action.text);
+                QuestionsStore.updateOrCreateQuestion(action.snippetId, action.text, action.authorUid);
                 QuestionsStore.emitChange();
             }
             break;
