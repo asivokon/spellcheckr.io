@@ -24,7 +24,7 @@ module.exports = React.createClass({
     _onKeyDown: function (event) {
         if (event.keyCode == 13) {
             // TODO: generate author UID
-            ApiActions.fireAnswer(this.props.question, this.state.text, 1, this.props.snippetId)
+            ApiActions.fireAnswer(this.props.question, this.state.text, this.props.snippetId, 1)
         }
     },
 

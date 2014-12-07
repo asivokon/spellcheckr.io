@@ -10,7 +10,9 @@ function getStateFromStores() {
     return {
         text: EditorStore.getText(),
         isHighlight: EditorStore.getHighLightedState(),
-        snippetId: EditorStore.getSnippetId()
+        snippetId: EditorStore.getSnippetId(),
+        questionId: EditorStore.getQuestionId(),
+        questionText: EditorStore.getQuestionText()
     }
 }
 
@@ -60,8 +62,13 @@ module.exports = React.createClass({
             EditActions.fireQuestion(event.target.value, this.state.snippetId);
         }
         else {
-            // TODO we need author ID and question which we answer
-            ApiActions.fireAnswer(null, event.target.value, null, this.state.snippetId);
+            if (this.state.questionId) {
+                ApiActions.fireAnswer(this.state.questionText, event.target.value,
+                    this.state.questionId, this.state.snippetId);
+            }
+            else {
+                console.log("No question selected!");
+            }
         }
     }
 

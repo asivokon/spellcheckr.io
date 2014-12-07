@@ -13,13 +13,13 @@ module.exports = {
         });
     },
 
-    fireAnswer: function (question, answer, authorUid, snippetId) {
+    fireAnswer: function (question, answer, questionId, answerId) {
         Dispatcher.handleViewAction({
             type: AT.ANSWER_FIRE,
             question: question,
             answer: answer,
-            authorUid: authorUid,
-            snippetId: snippetId
+            authorUid: answerId,
+            snippetId: questionId
         });
     },
 
@@ -29,6 +29,14 @@ module.exports = {
             question: answer.question,
             answer: answer.answer,
             authorUid: answer.authorUid
+        });
+    },
+
+    questionSelected: function (question) {
+        Dispatcher.handleViewAction({
+            type: AT.ANSWER_RECEIVED,
+            question: question.text,
+            questionId: question.snippetId
         });
     }
 

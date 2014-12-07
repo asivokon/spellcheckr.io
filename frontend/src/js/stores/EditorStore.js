@@ -8,8 +8,10 @@ var PubNub = require('../utils/PubnubUtils');
 var AT = Constants.ActionTypes,
     CHANGE_EVENT = Constants.Events.CHANGE;
 
-var question = {
+var editor = {
         text: '',
+        questionId: null,
+        questionText: '',
         answers: [] // {authorUid, text}
     },
     _isHighLighted = false,
@@ -31,7 +33,21 @@ var EditorStore = assign({}, EventEmitter.prototype, {
     },
 
     getText: function () {
-        return _isHighLighted ? _highLightedText : question.text;
+        return _isHighLighted ? _highLightedText : editor.text;
+    },
+
+    getQuestionText: function () {
+        return editor.questionText;
+    },
+
+    getQuestionId: function () {
+        return editor.questionId;
+    },
+
+    setQuestion: function(id, text) {
+        editor.questionId = id;
+        editor.questionText = text;
+        this.emitChange();
     },
 
     getHighLightedState: function () {
@@ -39,7 +55,7 @@ var EditorStore = assign({}, EventEmitter.prototype, {
     },
 
     setText: function (text) {
-        question.text = text;
+        editor.text = text;
         this.emitChange();
     },
 
@@ -48,7 +64,7 @@ var EditorStore = assign({}, EventEmitter.prototype, {
     },
 
     getAnswers: function () {
-        return question.answers;
+        return editor.answers;
     }
 
 });
@@ -77,14 +93,14 @@ EditorStore.dispatchToken = Dispatcher.register(function (payload) {
             break;
 
         case AT.ANSWER_RECEIVED:
-            if (question.text == action.question) {
-                var found = question.answers.filter(function (element) {
+            if (editor.text == action.question) {
+                var found = editor.answers.filter(function (element) {
                     return element.authorUid == action.authorUid;
                 });
                 if (found.length) {
                     found[0].text = action.answer;
                 } else {
-                    question.answers.splice(0, 0, {authorUid: action.authorUid, text: action.answer});
+                    editor.answers.splice(0, 0, {authorUid: action.authorUid, text: action.answer});
                 }
             }
             break;
@@ -106,6 +122,10 @@ EditorStore.dispatchToken = Dispatcher.register(function (payload) {
             PubNub.publishAnswer(action.snippetId, message);
             EditorStore.emitChange();
             console.log("Answer send to: ", action.snippetId);
+            break;
+
+        case AT.QUESTION_SELECTED:
+            EditorStore.setQuestion(action.questionId, action.question);
             break;
 
         default:
