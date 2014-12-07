@@ -11,7 +11,14 @@ module.exports = {
         });
     },
 
-    publish: function (text, lang, snippetId) {
+    publishAnswer: function (channel, message) {
+        Pubnub.publish({
+            channel: channel,
+            message: message
+        });
+    },
+
+    publishQuestion: function (text, lang, snippetId) {
         Pubnub.publish({
             channel: 'lang-' + lang,
             message: {text: text, lang: lang, snippetId: snippetId},
@@ -22,17 +29,21 @@ module.exports = {
         });
     },
 
-    subscribeToChannel: function (channel) {
-        // TODO: unsubscribe
+    subscribeToChannel: function (channel, callback) {
         Pubnub.subscribe({
             channel: channel,
-            callback: function (m) {
-                ApiActions.questionReceived(m.snippetId, m.text);
-            }
+            callback: callback
+        });
+    },
+    subscribeLangChannel: function (lang) {
+        this.subscribeToChannel('lang-' + lang, function (m) {
+            ApiActions.questionReceived(m.snippetId, m.text);
         });
     },
 
-    subscribeLangChannel: function (lang) {
-        this.subscribeToChannel('lang-' + lang);
+    subscribePrivateChannel: function (uid) {
+        this.subscribeToChannel(uid, function (m) {
+            ApiActions.answerReceived(m);
+        });
     }
 };

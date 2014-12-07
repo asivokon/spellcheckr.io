@@ -1,6 +1,7 @@
 var React = require('react');
 var LangChannelStore = require('../stores/LangChannelStore');
 var Snippet = require('./Snippet.react');
+var AnswerForm = require('./AnswerForm.react');
 
 function getStateFromStores() {
     return {
@@ -36,8 +37,11 @@ module.exports = React.createClass({
 
         var snippets = this.state.snippets;
         var snipps = snippets.map(function (snip) {
-            return  (
-                <Snippet text={snip.text} />
+            return (
+                <div>
+                    <Snippet text={snip.text} />
+                    <AnswerForm snippetId={snip.snippetId} question={snip.text}/>
+                </div>
             );
         });
 

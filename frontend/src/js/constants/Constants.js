@@ -3,8 +3,8 @@ module.exports = {
     ActionTypes: {
         'QUESTION_FIRE': 'QUESTION_FIRE',                   // { text: 'question', snippetId: uid }
         'QUESTION_RECEIVED': 'QUESTION_RECEIVED',           // { text: 'question', snippetId: uid }
-        'ANSWER_FIRE':'ANSWER_FIRE',                        // { snippedId: uid, text: 'answer' }
-        'ANSWER_RECEIVED':'ANSWER_RECEIVED',                // { text: 'answer' }
+        'ANSWER_FIRE':'ANSWER_FIRE',                        // { question:'', answer: 'answer', authorUid: uid, snippedId: uid}
+        'ANSWER_RECEIVED':'ANSWER_RECEIVED',                // { question:'', answer: 'answer', authorUid: uid }
         'GET_SNIPPET_DIFF': 'GET_SNIPPET_DIFF',
         'UPDATE_HIGHLIGHT_TEXT': 'UPDATE_HIGHLIGHT_TEXT',
         'RESET_HIGHLIGHT': 'RESET_HIGHLIGHT',

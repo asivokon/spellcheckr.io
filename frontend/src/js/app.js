@@ -2,7 +2,8 @@ var React = require('react');
 var App = require('./components/App.react');
 var PubnubUtils = require('./utils/PubnubUtils');
 var AppUtils = require('./utils/AppUtils');
-var SuggestBotStore = require('./stores/SuggestBotStore');
+require('./stores/SuggestBotStore');
+require('./stores/AnswersStore');
 
 window.React = React; // export for http://fb.me/react-devtools
 PubnubUtils.init();

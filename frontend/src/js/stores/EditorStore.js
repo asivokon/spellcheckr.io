@@ -3,11 +3,15 @@ var Constants = require('../constants/Constants');
 var EventEmitter = require('events').EventEmitter;
 var FireBaseUtil = require('../utils/FireBaseUtils');
 var assign = require('object-assign');
+var PubNub = require('../utils/PubnubUtils');
 
 var AT = Constants.ActionTypes,
     CHANGE_EVENT = Constants.Events.CHANGE;
 
-var _text = '',
+var question = {
+        text: "",
+        answers: [] // {authorUid, text}
+    },
     _isHighLighted = false,
     _highLightedText = '',
     _snippetId;
@@ -27,7 +31,7 @@ var EditorStore = assign({}, EventEmitter.prototype, {
     },
 
     getText: function () {
-        return _isHighLighted ? _highLightedText : _text;
+        return _isHighLighted ? _highLightedText : question.text;
     },
 
     getHighLightedState: function () {
@@ -35,12 +39,16 @@ var EditorStore = assign({}, EventEmitter.prototype, {
     },
 
     setText: function (text) {
-        _text = text;
+        question.text = text;
         this.emitChange();
     },
 
-    getSnippetId: function() {
+    getSnippetId: function () {
         return _snippetId;
+    },
+
+    getAnswers: function () {
+        return question.answers;
     }
 
 });
@@ -56,12 +64,13 @@ EditorStore.dispatchToken = Dispatcher.register(function (payload) {
                     EditorStore.setText(data.message);
                 }
             });
+            PubNub.subscribePrivateChannel(_snippetId);
             break;
 
         case AT.QUESTION_FIRE:
-            _text = action.text;
             FireBaseUtil.putMessage(_snippetId, action.text);
             EditorStore.emitChange();
+            console.log('question fire', action);
             break;
 
         case AT.UPDATE_HIGHLIGHT_TEXT:
@@ -69,7 +78,18 @@ EditorStore.dispatchToken = Dispatcher.register(function (payload) {
             _isHighLighted = true;
             EditorStore.emitChange();
             break;
-
+        case AT.ANSWER_RECEIVED:
+            if (question.text == action.question) {
+                var found = question.answers.filter(function (element) {
+                    return element.authorUid == action.authorUid;
+                });
+                if (found.length) {
+                    found[0].text = action.answer;
+                } else {
+                    question.answers.splice(0, 0, {authorUid: action.authorUid, text: action.answer});
+                }
+            }
+            break;
         case AT.RESET_HIGHLIGHT:
             _isHighLighted = false;
             _highLightedText = '';

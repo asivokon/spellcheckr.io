@@ -13,7 +13,7 @@ module.exports = {
             text: text,
             snippetId: snippetId
         });
-        PubnubUtils.publish(text, LangChannelStore.getChannelLang(), snippetId);
+        PubnubUtils.publishQuestion(text, LangChannelStore.getChannelLang(), snippetId);
     },
 
     updateHighLightText: function (text) {

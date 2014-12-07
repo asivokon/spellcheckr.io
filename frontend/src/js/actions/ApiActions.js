@@ -11,6 +11,25 @@ module.exports = {
             snippetId: snippetId,
             text: text
         });
+    },
+
+    fireAnswer: function (question, answer, authorUid, snippetId) {
+        Dispatcher.handleViewAction({
+            type: AT.ANSWER_FIRE,
+            question: question,
+            answer: answer,
+            authorUid: authorUid,
+            snippetId: snippetId
+        });
+    },
+
+    answerReceived: function (answer) {
+        Dispatcher.handleViewAction({
+            type: AT.ANSWER_RECEIVED,
+            question: answer.question,
+            answer: answer.answer,
+            authorUid: answer.authorUid
+        });
     }
 
 };

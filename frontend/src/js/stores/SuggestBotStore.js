@@ -3,7 +3,6 @@ var Constants = require('../constants/Constants');
 var EventEmitter = require('events').EventEmitter;
 var LanguageToolUtils = require('../utils/LanguageToolUtils');
 var EditorStore = require('./EditorStore');
-var LangChannelStore = require('./LangChannelStore');
 var assign = require('object-assign');
 
 var AT = Constants.ActionTypes,
