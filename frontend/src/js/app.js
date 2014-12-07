@@ -8,8 +8,6 @@ window.React = React; // export for http://fb.me/react-devtools
 PubnubUtils.init();
 AppUtils.onAppStart();
 
-
-
 React.render(
     <App />,
     document.getElementById('react')

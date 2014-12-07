@@ -2,16 +2,18 @@ var Dispatcher = require('../dispatcher/Dispatcher');
 var Constants = require('../constants/Constants');
 var EventEmitter = require('events').EventEmitter;
 var assign = require('object-assign');
+var Marvel = require('../utils/MarvelCharacters');
 
 var AT = Constants.ActionTypes,
     CHANGE_EVENT = Constants.Events.CHANGE;
 /*
-* App have 2 states:
-*  0 - Question state (default)
-*  1 - Answer state
-* */
+ * App have 2 states:
+ *  0 - Question state (default)
+ *  1 - Answer state
+ * */
 var _appState = Constants.AppState.QUESTION_STATE,
-    _primaryLang = 'eng'; // TODO: this is mocked
+    _primaryLang = 'eng', // TODO: this is mocked
+    _userName = Marvel.getCharacter();
 
 var AppStore = assign({}, EventEmitter.prototype, {
 
@@ -37,6 +39,10 @@ var AppStore = assign({}, EventEmitter.prototype, {
 
     setPrimaryLang: function (lang) {
         _primaryLang = lang;
+    },
+
+    getUserName: function () {
+        return _userName;
     }
 
 });
