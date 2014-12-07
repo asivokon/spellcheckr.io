@@ -9,8 +9,8 @@ module.exports = {
     },
 
     onAppStart: function () {
-        this.generateSnippetId();
         UiActions.setPrimaryLanguage('eng');        // TODO: autoguess lang by IP
+        this.generateSnippetId();
     },
 
     throttle: function (f, delay) {

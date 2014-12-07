@@ -5,9 +5,10 @@ var AppUtils = require('./utils/AppUtils');
 var SuggestBotStore = require('./stores/SuggestBotStore');
 
 window.React = React; // export for http://fb.me/react-devtools
+PubnubUtils.init();
 AppUtils.onAppStart();
 
-PubnubUtils.init();
+
 
 React.render(
     <App />,

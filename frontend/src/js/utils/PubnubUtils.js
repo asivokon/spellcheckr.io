@@ -9,7 +9,6 @@ module.exports = {
             publish_key: Settings.pubNub.publishKey,
             subscribe_key: Settings.pubNub.subscribeKey
         });
-        this.subscribeLangChannel('eng');
     },
 
     publish: function (text, lang, snippetId) {
