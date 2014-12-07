@@ -9,7 +9,7 @@ var AT = Constants.ActionTypes,
     CHANGE_EVENT = Constants.Events.CHANGE;
 
 var question = {
-        text: "",
+        text: '',
         answers: [] // {authorUid, text}
     },
     _isHighLighted = false,
@@ -60,9 +60,7 @@ EditorStore.dispatchToken = Dispatcher.register(function (payload) {
         case AT.SET_SNIPPET_ID:
             _snippetId = action.snippetId;
             FireBaseUtil.getMessage(_snippetId, function (data) {
-                if (data && data.message) {
-                    EditorStore.setText(data.message);
-                }
+                EditorStore.setText(data && data.message || '');
             });
             PubNub.subscribePrivateChannel(_snippetId);
             break;
@@ -77,6 +75,7 @@ EditorStore.dispatchToken = Dispatcher.register(function (payload) {
             _isHighLighted = true;
             EditorStore.emitChange();
             break;
+
         case AT.ANSWER_RECEIVED:
             if (question.text == action.question) {
                 var found = question.answers.filter(function (element) {
@@ -89,6 +88,7 @@ EditorStore.dispatchToken = Dispatcher.register(function (payload) {
                 }
             }
             break;
+
         case AT.RESET_HIGHLIGHT:
             _isHighLighted = false;
             _highLightedText = '';
