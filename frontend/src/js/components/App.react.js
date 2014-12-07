@@ -2,7 +2,6 @@ var React = require('react');
 var Editor = require('./Editor.react');
 var LangChanel = require('./LangChanel.react');
 
-
 var mui = require('material-ui'),
     RaisedButton = mui.RaisedButton;
 

@@ -1,8 +1,7 @@
-var React = require('react');
+var React = require('react/addons');
+var cs = React.addons.classSet;
 var EditActions = require('../actions/EditActions');
 var EditorStore = require('../stores/EditorStore');
-require('react/addons');
-var cs = React.addons.classSet;
 
 function getStateFromStores() {
     return {

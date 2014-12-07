@@ -6,7 +6,6 @@ var EditActions = require('../actions/EditActions');
 module.exports = React.createClass({
 
     propTypes: {
-        //snippet: React.PropTypes.object
       snippetId: React.PropTypes.string,
       text: React.PropTypes.string
     },

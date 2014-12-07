@@ -1,7 +1,7 @@
 var React = require('react');
 var mui = require('material-ui');
 
-var  Input = mui.Input,
+var Input = mui.Input,
     Toolbar = mui.Toolbar,
     ToolbarGroup = mui.ToolbarGroup,
     MenuItem = mui.MenuItem,
@@ -9,8 +9,6 @@ var  Input = mui.Input,
     Ripple = mui.Ripple,
     IconButton = mui.IconButton,
     FlatButton = mui.FlatButton;
-
-
 
 var menuItems = [
     { route: 'get-started', text: 'Get Started' },
@@ -21,7 +19,7 @@ var menuItems = [
         type: MenuItem.Types.LINK,
         payload: 'https://github.com/callemall/material-ui',
         text: 'GitHub'
-    },
+    }
 ];
 
 //Docked Left Nav
