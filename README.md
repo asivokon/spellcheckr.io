@@ -25,6 +25,10 @@ did Obi-Wan’s apprentice.”
 
 Not so funny anymore, huh?
 
+![spellcheckr.io Yoda uses](https://raw.githubusercontent.com/asivokon/spellcheckr.io/master/yoda.jpg)
+
+
+
 What we offer is a proofreading service with users ready to help you around the
 clock.  World is wide; when they sleep in Australia, they are wide awake in
 Austria! Which is exactly what makes your chances to get a quick, real-time
