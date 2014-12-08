@@ -35,7 +35,7 @@ This service is for you, if you:
 * just want to improve your writing
 * ...
 
-Hop in and post your text snippet [here](http://spellcheckr.io/)!
+Hop in and post your text snippet [here](http://alexsivokon.koding.io/)!
 Or if you feel like you should be the one proofreading others, by all
 means join our forces on the other end of the channel! Just switch to the
 Suggestions page and fire away!
