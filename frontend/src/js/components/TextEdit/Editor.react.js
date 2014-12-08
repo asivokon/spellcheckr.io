@@ -72,7 +72,6 @@ module.exports = React.createClass({
         var appState = this._getAppState(),
             value = appState !== Constants.AppState.QUESTION_STATE ?
                 this.state.questionText : this.state.text;
-
         return (
             <div>
                 <Textarea ref="text"
@@ -87,9 +86,10 @@ module.exports = React.createClass({
 
     _onChange: function () {
         this.setState(getStateFromStores());
-        //triggerChange(this.refs.text.getDOMNode());
-        //this.refs.text.getDiffSize();
-        //this.refs.text.recalculateSize();
+        setTimeout(function () {
+            this.refs.text.getDiffSize();
+            this.refs.text.recalculateSize();
+        }.bind(this), 1)
     },
 
     _getAppState: function () {
