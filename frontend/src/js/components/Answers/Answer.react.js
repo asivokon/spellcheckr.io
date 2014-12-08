@@ -1,5 +1,6 @@
 var React = require('react/addons');
 var cs = React.addons.classSet;
+var ApiActions = require('../../actions/ApiActions');
 
 module.exports = React.createClass({
 
@@ -19,12 +20,17 @@ module.exports = React.createClass({
 
         return (
             <li className="listing-item"
+                onClick={this.onClick}
                 onMouseEnter={this.onMouseEnter}
                 onMouseLeave={this.onMouseLeave}>
                 <div className="listing-text" dangerouslySetInnerHTML={{__html: text}}></div>
                 <div className="listing-menu"><span>{answer.author}</span></div>
             </li>
         );
+    },
+    
+    onClick: function () {
+        ApiActions.answerSelected(this.props.answer);
     },
 
     onMouseEnter: function () {

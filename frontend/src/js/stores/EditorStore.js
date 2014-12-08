@@ -96,9 +96,8 @@ EditorStore.dispatchToken = Dispatcher.register(function (payload) {
             EditorStore.emitChange();
             break;
 
-        case AT.UPDATE_HIGHLIGHT_TEXT:
-            _highLightedText = action.text;
-            _isHighLighted = true;
+        case AT.ANSWER_SELECTED:
+            editor.text = action.answer;
             EditorStore.emitChange();
             break;
 
@@ -123,7 +122,7 @@ EditorStore.dispatchToken = Dispatcher.register(function (payload) {
 
         case AT.ANSWER_FIRE:
             FireBaseUtils.putResponse(action);
-            PubNub.publishAnswer(action.snippetId, message);
+            PubNub.publishAnswer(action.snippetId, action);
             EditorStore.emitChange();
             break;
 

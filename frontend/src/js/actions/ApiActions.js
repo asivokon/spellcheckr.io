@@ -49,6 +49,14 @@ module.exports = {
             question: question.text,
             questionId: question.id
         });
+    },
+
+    answerSelected: function (answer) {
+        Dispatcher.handleViewAction({
+            type: AT.ANSWER_SELECTED,
+            answer: answer.answer,
+            answerId: answer.answerId
+        });
     }
 
 };

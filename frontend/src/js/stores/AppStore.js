@@ -3,6 +3,7 @@ var Constants = require('../constants/Constants');
 var EventEmitter = require('events').EventEmitter;
 var assign = require('object-assign');
 var Marvel = require('../utils/MarvelCharacters');
+var cookies = require('cookie-cutter');
 
 var AT = Constants.ActionTypes,
     CHANGE_EVENT = Constants.Events.CHANGE;
@@ -13,10 +14,12 @@ var AT = Constants.ActionTypes,
  * */
 var _appState = Constants.AppState.QUESTION_STATE,
     _primaryLang = 'eng', // TODO: this is mocked
-    _userName = Marvel.getCharacter();
+    _userName = cookies.get("userName") || Marvel.getCharacter();
+
+cookies.set("userName", _userName);
+console.log("Singed as " + _userName);
 
 var AppStore = assign({}, EventEmitter.prototype, {
-
     emitChange: function () {
         this.emit(CHANGE_EVENT);
     },
@@ -44,7 +47,6 @@ var AppStore = assign({}, EventEmitter.prototype, {
     getUserName: function () {
         return _userName;
     }
-
 });
 
 AppStore.dispatchToken = Dispatcher.register(function (payload) {
