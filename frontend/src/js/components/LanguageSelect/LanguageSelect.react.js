@@ -16,7 +16,7 @@ module.exports = React.createClass({
         });
 
         return (
-            <select>{options}</select>
+            <select value=selectedLang>{options}</select>
         );
     },
 
