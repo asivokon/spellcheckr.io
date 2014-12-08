@@ -27,8 +27,7 @@ module.exports = React.createClass({
         var state = this.props.state;
         var questions = this.state.questions;
         if (questions && Object.keys(questions).length < 1) {
-            //todo
-            return <div className="no-answers-message">You don't have questions.</div>;
+            return <div className="busy"><div className="spinner pulse"></div></div>;
         }
 
         var list = questions.map(function (q) {

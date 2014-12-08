@@ -31,7 +31,7 @@ module.exports = React.createClass({
         var answers = this.state.answers,
             text = this.state.text;
         if (answers && Object.keys(answers).length < 1) {
-            return <div className="no-answers-message">You don't have answers for the text.</div>;
+            return <div className="busy"><div className="spinner pulse"></div></div>;
         }
 
         var list = answers.map(function (answer) {
