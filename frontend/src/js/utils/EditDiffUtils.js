@@ -1,6 +1,4 @@
 var jsdiff = require('diff');
-var EditorStore = require('../stores/EditorStore');
-var EditActions = require('../actions/EditActions');
 
 var _getTextTemplate = function (part) {
     var color = part.added ? '#0f0' :
@@ -10,12 +8,12 @@ var _getTextTemplate = function (part) {
 };
 
 module.exports = {
-    getSnipDiff: function (snipText) {
-        var text = EditorStore.getText();
-        var diff = jsdiff.diffChars(text, snipText);
+
+    getDiff: function (text, source) {
+        var diff = jsdiff.diffChars(text, source);
         var result = diff.map(_getTextTemplate);
 
-        EditActions.updateHighLightText(result.join(''));
+        return result.join('');
     }
 
 };

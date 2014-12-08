@@ -1,12 +1,15 @@
 var React = require('react/addons');
 var cs = React.addons.classSet;
 var AnswersStore = require('../../stores/AnswersStore');
+var EditorStore = require('../../stores/EditorStore');
 var Answer = require('./Answer.react.js');
 
+var EditDiffUtils = require('../../utils/EditDiffUtils');
 
 function getStateFromStores() {
     return {
-        answers: AnswersStore.getAnswers()
+        answers: AnswersStore.getAnswers(),
+        text: EditorStore.getText()
     }
 }
 
@@ -25,15 +28,15 @@ module.exports = React.createClass({
     },
 
     render: function () {
-        var state = this.props.state;
-
-        var answers = this.state.answers;
+        var answers = this.state.answers,
+            text = this.state.text;
         if (answers && Object.keys(answers).length < 1) {
             return <div className="no-answers-message">You don't have answers for the text.</div>;
         }
 
         var list = answers.map(function (answer) {
-            return  (
+            answer.diffText = EditDiffUtils.getDiff(text, answer.answer);
+            return (
                 <Answer answer={answer} />
             );
         });

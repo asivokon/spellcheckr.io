@@ -50,7 +50,7 @@ module.exports = React.createClass({
         var diff = this.state.text.trim().length - minLen;
         var detectMsg = '';
         var lang = this.state.detectedLanguage;
-        
+
         if (lang) {
             detectMsg = <p>Detected language: {lang}</p>
         } else if (diff < 0) {
