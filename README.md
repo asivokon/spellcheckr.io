@@ -22,8 +22,6 @@ Not so funny anymore, huh?
 
 ![spellcheckr.io Yoda uses](https://raw.githubusercontent.com/asivokon/spellcheckr.io/master/yoda.jpg)
 
-
-
 What we offer is a proofreading service with users ready to help you around the
 clock.  World is wide; when they sleep in Australia, they are wide awake in
 Austria! Which is exactly what makes your chances to get a quick, real-time
@@ -41,3 +39,14 @@ Hop in and post your text snippet [here](http://spellcheckr.io/)!
 Or if you feel like you should be the one proofreading others, by all
 means join our forces on the other end of the channel! Just switch to the
 Suggestions page and fire away!
+
+This was born as a Hackathon project and we wanted to try out some awesome
+new  APIs and frameworks, so we selected:
+
+* [PubNub for quick messaging] (http://www.pubnub.com/)
+* [FireBase for persistence] (https://www.firebase.com/)
+* [Mashape Language Tool] (https://www.mashape.com/dnaber/languagetool)
+* [Mashape Language Detect] (https://www.mashape.com/detectlanguage/language-detection-2)
+* [React.js for UI components] (http://facebook.github.io/react/)
+* [Flux for events model] (https://facebook.github.io/flux/)
+* [Node.js to hold this all together] (http://nodejs.org/)
