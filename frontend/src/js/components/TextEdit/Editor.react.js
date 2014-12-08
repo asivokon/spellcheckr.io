@@ -19,6 +19,18 @@ function getStateFromStores() {
     }
 }
 
+//function triggerChange(element) {
+//    if ("createEvent" in document) {
+//        var evt = document.createEvent("HTMLEvents");
+//        evt.initEvent("change", false, true);
+//        element.dispatchEvent(evt);
+//    }
+//    else {
+//        element.fireEvent("onchange");
+//    }
+//}
+
+
 module.exports = React.createClass({
 
     propTypes: {
@@ -63,7 +75,7 @@ module.exports = React.createClass({
 
         return (
             <div>
-                <Textarea
+                <Textarea ref="text"
                     placeholder={this.getPlaceholderText()}
                     onChange={this._textChange}
                     value={value} />
@@ -72,8 +84,12 @@ module.exports = React.createClass({
         );
     },
 
+
     _onChange: function () {
         this.setState(getStateFromStores());
+        //triggerChange(this.refs.text.getDOMNode());
+        //this.refs.text.getDiffSize();
+        //this.refs.text.recalculateSize();
     },
 
     _getAppState: function () {
