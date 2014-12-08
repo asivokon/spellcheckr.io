@@ -10,7 +10,7 @@ var AT = Constants.ActionTypes,
     CHANGE_EVENT = Constants.Events.CHANGE;
 
 //test mock for answers
-var _answers = []; // {answer, authorUid, question, snippedId}
+var _answers = []; // ANSWER_STRUCT
 
 var AnswerStore = assign({}, EventEmitter.prototype, {
 
@@ -41,13 +41,13 @@ AnswerStore.dispatchToken = Dispatcher.register(function (payload) {
 
     switch (action.type) {
         case AT.ANSWER_FIRE:
+            Firebase.putResponse(action);
             var message = {
                 question: action.question,
                 answer: action.answer,
                 authorUid: action.authorUid,
                 snippetId: action.snippetId
             };
-            Firebase.putResponse(message);
             Pubnub.publishAnswer(action.snippetId, message);
             //update textarea text...
             EditorStore.setQuestion(action.snippetId, action.answer);

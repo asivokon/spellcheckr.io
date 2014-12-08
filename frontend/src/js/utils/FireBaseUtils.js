@@ -20,7 +20,7 @@ module.exports = {
     },
 
     putResponse: function (message) {
-        FireBaseRoutes.responses(message.snippetId, message.authorUid).
+        FireBaseRoutes.responses(message.snippetId, message.answerId).
             set(message);
     },
 

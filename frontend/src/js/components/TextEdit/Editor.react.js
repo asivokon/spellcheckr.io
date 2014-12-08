@@ -50,7 +50,7 @@ module.exports = React.createClass({
         var diff = this.state.text.trim().length - minLen;
         var detectMsg = '';
         var lang = this.state.detectedLanguage;
-        
+
         if (lang) {
             detectMsg = <p>Detected language: {lang}</p>
         } else if (diff < 0) {
@@ -87,8 +87,13 @@ module.exports = React.createClass({
             EditActions.fireQuestion(text, this.state.snippetId);
         } else {
             if (this.state.questionId) {
-                ApiActions.fireAnswer(this.state.questionText, text,
-                    this.state.questionId, this.state.snippetId);
+                ApiActions.fireAnswer(
+                    this.state.questionText,
+                    text,
+                    this.state.questionId,
+                    this.state.snippetId,
+                    AppStore.getUserName()
+                );
             } else {
                 this.setState({text: text});
             }

@@ -1,6 +1,7 @@
 var React = require('react/addons');
 var ApiActions = require('../actions/ApiActions');
 var AppStore = require('../stores/AppStore');
+var EditorStore = require('../stores/EditorStore');
 
 module.exports = React.createClass({
     propTypes: {
@@ -28,6 +29,7 @@ module.exports = React.createClass({
                 this.props.question,
                 this.state.text,
                 this.props.snippetId,
+                EditorStore.getQuestionId(),
                 AppStore.getUserName());
         }
     },
