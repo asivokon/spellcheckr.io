@@ -52,6 +52,7 @@ module.exports = {
                         }
                     }
                 }
+                messages.sort(function (q1, q2) { return q1.date - q2.date});
                 callback(messages);
             });
     },
