@@ -83,21 +83,22 @@ module.exports = React.createClass({
     _textChange: function (event) {
         var text = event.target.value;
         var appState = this._getAppState();
-        if (appState == Constants.AppState.QUESTION_STATE) {
-            EditActions.fireQuestion(text, this.state.snippetId);
-        } else {
-            if (this.state.questionId) {
-                ApiActions.fireAnswer(
-                    this.state.questionText,
-                    text,
-                    this.state.questionId,
-                    this.state.snippetId,
-                    AppStore.getUserName()
-                );
-            } else {
-                this.setState({text: text});
+        if (text.replace('\n', '').trim().length != 0) {
+            if (appState == Constants.AppState.QUESTION_STATE) {
+                EditActions.fireQuestion(text, this.state.snippetId);
+            } else if (this.state.questionId) {
+                if (text.length != 0) {
+                    ApiActions.fireAnswer(
+                        this.state.questionText,
+                        text,
+                        this.state.questionId,
+                        this.state.snippetId,
+                        AppStore.getUserName()
+                    );
+                }
             }
         }
+        this.setState({text: text});
     }
 
 });
