@@ -54,6 +54,10 @@ module.exports = {
       entries: src + '/js/app.js',
       dest: dest,
       outputName: 'app.js'
+    }, {
+      entries: src + '/js/intro.js',
+      dest: dest,
+      outputName: 'intro.js'
     }]
   }
 };

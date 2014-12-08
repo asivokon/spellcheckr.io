@@ -143,7 +143,7 @@ body {
     padding: 10px 0;
     display: block;
     text-align: center;
-    &:hover {
+    &:hover:not(a) {
       &:extend(a:hover);
       strong {
         display: inline;
@@ -163,6 +163,12 @@ body {
 
 }
 
+.editor-area {
+
+}
+.editor-area-info {
+  color: @menu-tabs-color;
+}
 
 .placeholder-default() {
   color: @placeholder-color;
@@ -271,24 +277,3 @@ textarea {
 
 
 
-
-
-.app-wrapper {
-  display: flex;
-}
-
-.questions-view,
-.answers-view {
-  margin: 0 20px;
-}
-
-.text-edit-view {
-  flex-grow: 2;
-}
-
-.questions-view {
-
-}
-.answers-view {
-
-}

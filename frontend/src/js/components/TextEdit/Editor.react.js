@@ -64,9 +64,9 @@ module.exports = React.createClass({
         var lang = this.state.detectedLanguage;
 
         if (lang) {
-            detectMsg = <p>Detected language: {lang}</p>
+            detectMsg = <span>Detected language: {lang}</span>
         } else if (diff < 0) {
-            detectMsg = <p>Language detection needs {Math.abs(diff)} more chars</p>
+            detectMsg = <span>Language detection needs {Math.abs(diff)} more chars</span>
         }
 
         var appState = this._getAppState(),
@@ -74,11 +74,11 @@ module.exports = React.createClass({
                 this.state.questionText : this.state.text;
         return (
             <div>
-                <Textarea ref="text"
+                <Textarea className="editor-area" ref="text"
                     placeholder={this.getPlaceholderText()}
                     onChange={this._textChange}
                     value={value} />
-                {detectMsg}
+                <div className="editor-area-info">{detectMsg}</div>
             </div>
         );
     },
