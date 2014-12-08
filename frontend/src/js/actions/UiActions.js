@@ -1,7 +1,6 @@
 var Dispatcher = require('../dispatcher/Dispatcher');
 var Constants = require('../constants/Constants');
 var PubnubUtils = require('../utils/PubnubUtils');
-var ApiActions = require('./ApiActions');
 var FireBaseUtils = require('../utils/FireBaseUtils');
 var AnswersStore = require('../stores/AnswersStore');
 
@@ -29,7 +28,6 @@ module.exports = {
         });
         PubnubUtils.subscribeLangChannel(lang);
     },
-
 
     setSecondaryLanguage: function (lang) {
         Dispatcher.handleViewAction({
