@@ -5,6 +5,7 @@ var assign = require('object-assign');
 var EditorStore = require('./EditorStore');
 var FireBaseUtils = require('../utils/FireBaseUtils');
 var ApiActions = require('../actions/ApiActions');
+var Settings = require('../utils/Settings');
 
 var AT = Constants.ActionTypes,
     CHANGE_EVENT = Constants.Events.CHANGE;
@@ -39,6 +40,9 @@ var QuestionsStore = assign({}, EventEmitter.prototype, {
             filtered[0].text = text;
         } else {
             _questions.splice(0, 0, {id: id, text: text, author: author});
+        }
+        if (_questions.length > Settings.questionsViewLimit) {
+            _questions.splice(Settings.questionsViewLimit, _questions.length - Settings.questionsViewLimit);
         }
     },
 
