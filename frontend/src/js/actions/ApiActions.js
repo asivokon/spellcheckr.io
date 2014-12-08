@@ -14,13 +14,14 @@ module.exports = {
         });
     },
 
-    fireAnswer: function (question, answer, questionId, authorId) {
+    fireAnswer: function (question, answer, questionId, answerId, author) {
         Dispatcher.handleViewAction({
             type: AT.ANSWER_FIRE,
             question: question,
             answer: answer,
-            authorUid: authorId,
-            snippetId: questionId
+            answerId: answerId,
+            snippetId: questionId,
+            author: author
         });
     },
 

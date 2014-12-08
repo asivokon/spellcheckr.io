@@ -22,7 +22,7 @@ module.exports = React.createClass({
                 onMouseEnter={this.onMouseEnter}
                 onMouseLeave={this.onMouseLeave}>
                 <div className="listing-text" dangerouslySetInnerHTML={{__html: text}}></div>
-                <div className="listing-menu"><span>{answer.authorUid}</span></div>
+                <div className="listing-menu"><span>{answer.author}</span></div>
             </li>
         );
     },

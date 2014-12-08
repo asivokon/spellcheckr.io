@@ -87,8 +87,13 @@ module.exports = React.createClass({
             EditActions.fireQuestion(text, this.state.snippetId);
         } else {
             if (this.state.questionId) {
-                ApiActions.fireAnswer(this.state.questionText, text,
-                    this.state.questionId, this.state.snippetId);
+                ApiActions.fireAnswer(
+                    this.state.questionText,
+                    text,
+                    this.state.questionId,
+                    this.state.snippetId,
+                    AppStore.getUserName()
+                );
             } else {
                 this.setState({text: text});
             }

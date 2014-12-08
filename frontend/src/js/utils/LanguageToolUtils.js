@@ -38,9 +38,9 @@ module.exports = {
                             if (lastIndex < text.length) {
                                 result += text.substring(lastIndex);
                             }
-                            if (result != text) {
+                            //if (result != text) {
                                 callback(result);
-                            }
+                            //}
                         }
                     });
                 });
