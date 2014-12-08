@@ -10,10 +10,11 @@ module.exports = React.createClass({
 
     render: function () {
         var question = this.props.question;
+        var isTyping = this.props.question.isTyping;
         return (
             <li className="listing-item" onClick={this.questionClick}>
                 <div className="listing-text">{question.text}</div>
-                <div className="listing-menu"><span>{question.author}</span></div>
+                <div className="listing-menusssss"><span>{question.author}{isTyping? " is typing" : ""}</span></div>
             </li>
         );
     },

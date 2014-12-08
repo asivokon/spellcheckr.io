@@ -2,6 +2,8 @@ var Pubnub = require('pubnub-browserify');
 var ApiActions = require('../actions/ApiActions');
 var Settings = require("./Settings");
 
+var _questionTimers = {};
+
 module.exports = {
 
     init: function () {
@@ -31,9 +33,23 @@ module.exports = {
             callback: callback
         });
     },
+
     subscribeLangChannel: function (lang) {
         this.subscribeToChannel('lang-' + lang, function (m) {
-            ApiActions.questionReceived(m.snippetId, m.text, m.authorUid);
+            var questionId = m.snippetId;
+            var date = (new Date()).getTime();  // TODO: use message's date
+            clearTimeout(_questionTimers[questionId]);
+
+            ApiActions.questionReceived(questionId, m.text, m.authorUid);
+            ApiActions.questionTypingNotify(questionId, true);
+
+            var timer = setTimeout(function () {
+                ApiActions.questionTypingNotify(questionId, false);
+                clearTimeout(timer);
+            }, 2000);
+
+            _questionTimers[questionId] = timer;
+
         });
     },
 

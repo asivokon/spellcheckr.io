@@ -14,7 +14,8 @@ module.exports = {
         'SET_SNIPPET_ID': 'SET_SNIPPET_ID',                 // { snippetId: uid }
         'SET_PRIMARY_LANGUAGE': 'SET_PRIMARY_LANGUAGE',     // { lang: 'ukr' }
         'SET_SECONDARY_LANGUAGE': 'SET_SECONDARY_LANGUAGE', // { lang: 'eng' }
-        'QUESTION_LANGUAGE_DETECTED': 'QUESTION_LANGUAGE_DETECTED'
+        'QUESTION_LANGUAGE_DETECTED': 'QUESTION_LANGUAGE_DETECTED',
+        'QUESTION_TYPING_NOTIFY': 'QUESTION_TYPING_NOTIFY'  // { questionId: uid, isTyping: bool }
     },
 
     AppState: {

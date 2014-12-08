@@ -32,14 +32,14 @@ var QuestionsStore = assign({}, EventEmitter.prototype, {
         return _questions;
     },
 
-    updateOrCreateQuestion: function (id, text, author) {
+    updateOrCreateQuestion: function (id, text, author, date) {
         var filtered = _questions.filter(function (item) {
             return item.id == id;
         });
         if (filtered.length > 0) {
             filtered[0].text = text;
         } else {
-            _questions.splice(0, 0, {id: id, text: text, author: author});
+            _questions.splice(0, 0, {id: id, text: text, author: author, date: date});
         }
         if (_questions.length > Settings.questionsViewLimit) {
             _questions.splice(Settings.questionsViewLimit, _questions.length - Settings.questionsViewLimit);
@@ -52,7 +52,16 @@ var QuestionsStore = assign({}, EventEmitter.prototype, {
 
     getQuestionsLanguage: function () {
         return _lang;
+    },
+
+    setTypingNotify: function (questionId, isTyping) {
+        _questions.forEach(function (q) {
+            if (q.id == questionId) {
+                q.isTyping = isTyping;
+            }
+        });
     }
+
 
 });
 
@@ -63,7 +72,7 @@ QuestionsStore.dispatchToken = Dispatcher.register(function (payload) {
 
         case AT.QUESTION_RECEIVED:
             if (action.snippetId != EditorStore.getSnippetId()) {
-                QuestionsStore.updateOrCreateQuestion(action.snippetId, action.text, action.authorUid);
+                QuestionsStore.updateOrCreateQuestion(action.snippetId, action.text, action.authorUid, action.date);
                 QuestionsStore.emitChange();
             }
             break;
@@ -74,11 +83,16 @@ QuestionsStore.dispatchToken = Dispatcher.register(function (payload) {
 
             FireBaseUtils.getMessagesByLang(action.lang, function (questions) {
                 questions.forEach(function (q) {
-                    // TODO: pass more (like date)
-                    ApiActions.questionReceived(q.id, q.text, q.author);
+                    ApiActions.questionReceived(q.id, q.text, q.author, q.date);
                 });
             });
             break;
+
+        case AT.QUESTION_TYPING_NOTIFY:
+            QuestionsStore.setTypingNotify(action.questionId, action.isTyping);
+            QuestionsStore.emitChange();
+            break;
+
 
         default:
         // do nothing

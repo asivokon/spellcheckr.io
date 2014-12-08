@@ -5,12 +5,21 @@ var AT = Constants.ActionTypes;
 
 module.exports = {
 
-    questionReceived: function (snippetId, text, authorUid) {
+    questionReceived: function (snippetId, text, authorUid, date) {
         Dispatcher.handleViewAction({
             type: AT.QUESTION_RECEIVED,
             snippetId: snippetId,
             text: text,
-            authorUid: authorUid
+            authorUid: authorUid,
+            date: date
+        });
+    },
+
+    questionTypingNotify: function (questionId, isTyping) {
+        Dispatcher.handleViewAction({
+            type: AT.QUESTION_TYPING_NOTIFY,
+            questionId: questionId,
+            isTyping: isTyping
         });
     },
 
