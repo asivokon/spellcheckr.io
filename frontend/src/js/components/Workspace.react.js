@@ -42,7 +42,7 @@ module.exports = React.createClass({
         });
 
         return (
-            <div className="view">
+            <div className="view view-workspace">
                 <div className={WorkspaceClass}>
                     <div className="workspace-container">
                         <div className="column">

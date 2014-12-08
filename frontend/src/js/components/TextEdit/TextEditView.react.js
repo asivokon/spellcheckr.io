@@ -6,9 +6,7 @@ module.exports = React.createClass({
 
     render: function () {
         return (
-            <div className="text-edit-view">
-                <Editor />
-            </div>
+            <Editor />
         );
     }
 

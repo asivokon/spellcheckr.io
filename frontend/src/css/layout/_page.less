@@ -104,7 +104,7 @@ body {
   }
 
   .listing-menu {
-    color: #ccc;
+    color: @placeholder-color;
     font-size: 13px;
     line-height: 14px;
     height: 16px;
@@ -168,10 +168,24 @@ body {
 }
 
 .editor-area {
+  .reset;
+  .question-text;
+  width: 100%;
+  min-height: 25px;
+  display: block;
+  resize: none;
+  outline: 0;
+  padding: @question-padding 0;
+  //border: solid lightgrey;
+  .placeholder({})!important;
 
+  &:focus {
+   // .placeholder({color: transparent;})!important;
+  }
 }
+
 .editor-area-info {
-  color: @menu-tabs-color;
+  color: @placeholder-color;
 }
 
 .placeholder-default() {
@@ -200,9 +214,35 @@ body {
 }
 
 
-.workspace {
-
+.app, section {
+  height: 100%;
 }
+.app {
+  .switcher {
+    position: absolute;
+    width: 100%;
+    z-index: 2;
+    top: 40px;
+  }
+  .view {
+    position: relative;
+  }
+
+  .workspace {
+    position: absolute;
+    top:80px;
+    bottom:0;
+    left:0;
+    right:0;
+  }
+}
+
+.view-workspace {
+  position: relative;
+  height: 100%;
+  overflow: hidden;
+}
+
 
 .column(@index) when (@index >= 0){
   position: absolute;
@@ -220,27 +260,13 @@ body {
     padding: 2%;
     .column(2);
   }
+  .listing {
+    overflow: hidden;
+  }
 }
 
 .answer-mode-active .workspace-container {
   left: 0;
-}
-
-textarea {
-  .reset;
-  .question-text;
-  width: 100%;
-  min-height: 100px;
-  display: block;
-  resize: none;
-  outline: 0;
-  padding: @question-padding 0;
-  border: solid lightgrey;
-  .placeholder({})!important;
-
-  &:focus {
-    .placeholder({color: transparent;})!important;
-  }
 }
 
 .busy {

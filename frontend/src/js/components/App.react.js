@@ -34,8 +34,7 @@ module.exports = React.createClass({
         //<div className="view"><span className="logo">spellchec<strong>kr</strong>.<i>io</i></span></div>
 
         return (
-            <div>
-                <div className="navbar"></div>
+            <div className="app">
                 <Switcher />
                 <Workspace />
             </div>
