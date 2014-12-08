@@ -9,6 +9,7 @@ var Constants = require('../constants/Constants');
 var QuestionsView = require('./Questions/QuestionsView.react');
 var AnswersView = require('./Answers/AnswersView.react');
 var TextEditView = require('./TextEdit/TextEditView.react');
+var LanguageSelect = require('./LanguageSelect/LanguageSelect.react');
 
 
 function getStateFromStores() {
@@ -46,6 +47,7 @@ module.exports = React.createClass({
                     <div className="workspace-container">
                         <div className="column">
                             <TextEditView state={appState} />
+                            <LanguageSelect selectedLanguage='eng'/>
                         </div>
                         <div className="column">
                             <AnswersView state={appState} />

@@ -66,7 +66,7 @@ module.exports = React.createClass({
         if (lang) {
             detectMsg = <p>Detected language: {lang}</p>
         } else if (diff < 0) {
-            detectMsg = <p>Detection need {Math.abs(diff)} more chars</p>
+            detectMsg = <p>Language detection needs {Math.abs(diff)} more chars</p>
         }
 
         var appState = this._getAppState(),
@@ -82,7 +82,6 @@ module.exports = React.createClass({
             </div>
         );
     },
-
 
     _onChange: function () {
         this.setState(getStateFromStores());
