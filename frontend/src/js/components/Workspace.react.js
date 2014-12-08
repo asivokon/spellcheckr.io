@@ -47,7 +47,7 @@ module.exports = React.createClass({
                     <div className="workspace-container">
                         <div className="column">
                             <TextEditView state={appState} />
-                            <LanguageSelect selectedLanguage='eng'/>
+                            // <LanguageSelect selectedLanguage='eng'/>
                         </div>
                         <div className="column">
                             <AnswersView state={appState} />
