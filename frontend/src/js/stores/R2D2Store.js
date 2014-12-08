@@ -30,10 +30,15 @@ SuggestBotStore.dispatchToken = Dispatcher.register(function (payload) {
 
         case AT.QUESTION_FIRE:
             LanguageToolUtils.sendThrottled(action.text, null, function (response) {
-                ApiActions.fireAnswer(action.text, response, action.snippetId, "Smarty R2D2");
+                ApiActions.fireAnswer(
+                    action.text,
+                    response,
+                    action.snippetId,
+                    "r2s2",
+                    "Smarty R2D2");
                 EditorStore.emitChange();
             });
-            LanguageDetectionUtils.sendThrottled(action.text, function(lang) {
+            LanguageDetectionUtils.sendThrottled(action.text, function (lang) {
                 ApiActions.fireLanguageDetected(action.text, action.snippetId, lang);
                 EditorStore.emitChange();
             });
