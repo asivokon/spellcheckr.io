@@ -54,7 +54,7 @@ module.exports = React.createClass({
         if (appState == Constants.AppState.QUESTION_STATE) {
             return 'Type in the text you want to proofread...';
         }
-        return 'Type in your suggestion here...'
+        return 'Select a question and type in your suggestion here...'
     },
 
     render: function () {
