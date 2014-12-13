@@ -3,13 +3,13 @@
 This is temporary hack.
 
 Install deps:
-    $ pip install pubnub
-    $ pip install requests
+    $ pip install pubnub requests pylev
 
 """
 
 import requests
 import json
+import pylev
 from Pubnub import Pubnub
 
 subscribe_key = "sub-c-56f28a4a-7d24-11e4-baaa-02ee2ddab7fe",
@@ -18,15 +18,28 @@ slack_hook = "https://hooks.slack.com/services/T032YP3GJ/B03678V57/97S8boaA9xPdg
 
 pubnub = Pubnub(publish_key=publish_key, subscribe_key=subscribe_key)
 
+snippets_sent = {}      # snippetId => last sent text
+
 def _callback(message, channel):
-    notification_text = "Question posted: {}\nsnippetId: {}".format(
-                    message.get('text'), message.get('snippetId'))
+    snippet_id = message.get('snippetId')
+    snippet_text = message.get('text')
+    if not snippet_text or not snippet_id:
+        return
+
+    last_sent = snippets_sent.get(snippet_id)
+    if last_sent and pylev.levenshtein(last_sent, snippet_text) < 8:
+        return  # only send when diff is large enough
+
+    notification_text = "{} (snippetId: `{}`)".format(snippet_text, snippet_id)
     notification = {
             "text": notification_text,
             "username": message.get("authorUid", "visitor")
         }
     headers = {"Content-Type": "application/json"}
-    #requests.post(slack_hook, data=json.dumps(data), headers=headers)
+
+    requests.post(slack_hook, data=json.dumps(notification), headers=headers)
+
+    snippets_sent[snippet_id] = snippet_text
     print(message)
     print(notification_text)
 
